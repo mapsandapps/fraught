@@ -1,6 +1,5 @@
 import { INIT_BELONGING, INIT_EXCLUSION, clampStat, getRandomInt } from "../helpers";
 import { Choice, EventHistory, EventHistoryLog, Stat } from "../types";
-import "../App.css"; // TODO: if this import is needed, create an Event.css file
 
 interface EventProps {
   hobby: string;
@@ -47,7 +46,6 @@ export default function Event(props: EventProps) {
     <div className="card">
       {texts.map((text, i) => {
         return (
-          // <p style={{ transitionDelay: `${i * 1000}ms`, transitionDuration: '300ms', transitionProperty: 'opacity' }}>{ text }</p>
           <p key={`text-${i}`} className="fade-in" style={{ animationDelay: `${i * 1000}ms` }}>{ text }</p>
         )
       })}

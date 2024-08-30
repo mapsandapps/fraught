@@ -43,7 +43,7 @@ export const getEvent = (): Event => {
 
     occurrences.map(occurrence => {
       const { direction, stat } = occurrence;
-      occurrence.value = direction === Direction.neutral ? 0 : stat === Stat.belonging ? random(0, MAX_BELONGING_DELTA) : random(0, MAX_EXCLUSION_DELTA);
+      occurrence.value = direction === Direction.neutral ? 0 : stat === Stat.belonging ? random(1, MAX_BELONGING_DELTA) : random(1, MAX_EXCLUSION_DELTA);
     })
 
     event.push({

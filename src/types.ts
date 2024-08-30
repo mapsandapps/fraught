@@ -6,6 +6,12 @@ export enum GameState {
   preEvent = 'pre-event',
 }
 
+export enum Direction {
+  positive = 1,
+  negative = -1,
+  neutral = 0,
+}
+
 export enum Stat {
   belonging = 'belonging',
   exclusion = 'exclusion',
@@ -17,16 +23,17 @@ export enum Choice {
 }
 
 export type Expectation = {
-  key: string; // i think maybe expectations should have a short summary that associates them with an occurrence
-  copy: string;
+  text: string;
+  occurrences: Occurrence[];
 };
 
+export type Event = Expectation[]
+
 export type Occurrence = {
-  copy: string;
-  min: number;
-  max: number;
+  text: string;
+  value?: number;
+  direction: Direction;
   stat: Stat;
-  expectationKey: string;
 };
 
 export type EventHistory = {

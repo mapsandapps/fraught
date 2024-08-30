@@ -1,15 +1,23 @@
-import { Choice } from "../types";
+import { Choice, Event } from "../types";
 
 interface PreEventProps {
   hobby: string;
+  nextEvent: Event;
   onExit: (choice: Choice) => void;
 }
 
 export default function PreEvent(props: PreEventProps) {
-  const { hobby, onExit } = props;
+  const { hobby, nextEvent, onExit } = props;
 
   return (
     <div className="card">
+      {nextEvent.map((expectation, i) => {
+        return (
+          <p key={`expectation-${i}`}>
+            { expectation.text }
+          </p>
+        )
+      })}
       <p>
         Do you choose to go to the {hobby.toLowerCase()} event, or would you
         rather stay home?

@@ -1,14 +1,15 @@
-import { INIT_BELONGING, INIT_EXCLUSION, clampStat, getRandomInt } from "../helpers";
-import { Choice, EventHistory, EventHistoryLog, Stat } from "../types";
+import { INIT_BELONGING, INIT_EXCLUSION, getDeltaStat, getStatChangeText } from "../helpers";
+import { Choice, Event as EventType, EventHistory, EventHistoryLog, Stat } from "../types";
 
 interface EventProps {
   hobby: string;
   eventHistoryLog: EventHistoryLog;
+  nextEvent: EventType
   onExit: (eventHistory: EventHistory) => void;
 }
 
 export default function Event(props: EventProps) {
-  const { eventHistoryLog, hobby, onExit } = props;
+  const { eventHistoryLog, hobby, nextEvent, onExit } = props;
 
   const pluralRule = new Intl.PluralRules("en-US", { type: "ordinal" });
 
@@ -22,12 +23,13 @@ export default function Event(props: EventProps) {
   const prevBelonging = eventHistoryLog.length > 0 ? eventHistoryLog[eventHistoryLog.length - 1].finalBelonging : INIT_BELONGING;
   const prevExclusion = eventHistoryLog.length > 0 ? eventHistoryLog[eventHistoryLog.length - 1].finalExclusion : INIT_EXCLUSION;
 
-  // FIXME: these should actually be clamped, not the finalStat
-  const deltaBelonging = getRandomInt(-10, 10);
-  const deltaExclusion = getRandomInt(-10, 10);
+  const deltaBelonging = getDeltaStat(nextEvent, Stat.belonging);
+  const deltaExclusion = getDeltaStat(nextEvent, Stat.exclusion);
 
-  const finalBelonging = clampStat(prevBelonging + deltaBelonging, Stat.belonging);
-  const finalExclusion = clampStat(prevExclusion + deltaExclusion, Stat.exclusion);
+  const finalBelonging = prevBelonging + deltaBelonging
+  const finalExclusion = prevExclusion + deltaExclusion
+
+  // TODO: for each occurrence, check if it will be a win/loss condition
 
   // TODO:
   const eventHistory = {
@@ -37,10 +39,17 @@ export default function Event(props: EventProps) {
   };
 
   const texts = [
-    `You attended your ${eventHistoryLog.length + 1}${suffixes.get(pluralRule.select(eventHistoryLog.length + 1))} ${hobby.toLowerCase()} event.`,
-    `Your belonging changed by ${deltaBelonging}.`,
-    `Your exclusion changed by ${deltaExclusion}.`
+    `You attended your ${eventHistoryLog.length + 1}${suffixes.get(pluralRule.select(eventHistoryLog.length + 1))} ${hobby.toLowerCase()} event.`
   ]
+
+  nextEvent.map(expectation => {
+    texts.push(expectation.text)
+
+    expectation.occurrences.map(occurrence => {
+      texts.push(occurrence.text)
+      texts.push(getStatChangeText(occurrence))
+    })
+  })
 
   return (
     <div className="card">

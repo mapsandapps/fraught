@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
 import { INIT_BELONGING, INIT_EXCLUSION, clampStat, getRandomInt } from "../helpers";
 import { Choice, EventHistory, EventHistoryLog, Stat } from "../types";
-// import TextAnimation from './TextAnimation';
-// import ReactDOM from "react-dom/client";
-import { TypeAnimation } from 'react-type-animation';
+import "../App.css"; // TODO: if this import is needed, create an Event.css file
 
 interface EventProps {
   hobby: string;
@@ -13,8 +10,6 @@ interface EventProps {
 
 export default function Event(props: EventProps) {
   const { eventHistoryLog, hobby, onExit } = props;
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [visibleText, setVisibleText] = useState('');
 
   const pluralRule = new Intl.PluralRules("en-US", { type: "ordinal" });
 
@@ -48,26 +43,14 @@ export default function Event(props: EventProps) {
     `Your exclusion changed by ${deltaExclusion}.`
   ]
 
-  useEffect(() => {
-    let timeout;
-
-    const nextText = texts[currentIndex]
-
-    if (!nextText) return
-
-    timeout = setTimeout(() => {
-      setCurrentIndex(currentIndex + 1)
-      setVisibleText(visibleText + nextText + '\n\n')
-    }, 1000);
-
-    // TODO: i guess animate the bar here? or inside the above timeout?
-
-    return () => clearTimeout(timeout);
-  }, [currentIndex])
-
   return (
     <div className="card">
-      { visibleText }
+      {texts.map((text, i) => {
+        return (
+          // <p style={{ transitionDelay: `${i * 1000}ms`, transitionDuration: '300ms', transitionProperty: 'opacity' }}>{ text }</p>
+          <p key={`text-${i}`} className="fade-in" style={{ animationDelay: `${i * 1000}ms` }}>{ text }</p>
+        )
+      })}
       <button onClick={() => onExit(eventHistory)}>Continue</button>
     </div>
   );

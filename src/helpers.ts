@@ -1,8 +1,9 @@
 import { expectations } from "./bank";
 import { Direction, Event, Occurrence, Stat } from "./types";
-import { filter, flatten, random, sampleSize, sum, values } from 'lodash';
+import { filter, flatten, random, sampleSize, sum } from 'lodash';
 
 export const DEFAULT_HOBBY = "Line dancing";
+export const DEFAULT_TEXT_ANIMATION_DELAY = 1000; // ms
 export const INIT_BELONGING = 50;
 export const MAX_BELONGING = 100;
 export const INIT_EXCLUSION = 50;
@@ -62,6 +63,7 @@ export const getStatChangeText = (occurrence: Occurrence): string => {
   return `Your ${occurrence.stat} ${occurrence.direction === Direction.positive ? 'incresed' : 'decreased'} by ${occurrence.value}.`
 }
 
+// TODO: do i actually need this? not sure i need these aggregated...
 export const getDeltaStat = (event: Event, stat: Stat): number => {
   const occurrences = flatten(event.map((expectation) => {
     return expectation.occurrences

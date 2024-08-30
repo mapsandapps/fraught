@@ -1,3 +1,4 @@
+import { DEFAULT_TEXT_ANIMATION_DELAY } from "../helpers";
 import { Choice, Event } from "../types";
 
 interface PreEventProps {
@@ -9,19 +10,32 @@ interface PreEventProps {
 export default function PreEvent(props: PreEventProps) {
   const { hobby, nextEvent, onExit } = props;
 
+  const texts = [
+    nextEvent.length > 1 ? 'A number of thoughts go through your head about the next upcoming event:' : 'You contemplate the next upcoming event:'
+  ]
+
+  nextEvent.map((expectation) => {
+    texts.push(expectation.text)
+  })
+
+  texts.push(`Do you choose to go to the ${hobby.toLowerCase()} event, or would you
+  rather stay home?`)
+
   return (
     <div className="card">
-      {nextEvent.map((expectation, i) => {
+      {texts.map((text, i) => {
+        const animationDelay = `${i * DEFAULT_TEXT_ANIMATION_DELAY}ms`
+        
         return (
-          <p key={`expectation-${i}`}>
-            { expectation.text }
+          <p 
+            key={`text-${i}`} 
+            className="fade-in" 
+            style={{ animationDelay }}
+          >
+            { text }
           </p>
         )
       })}
-      <p>
-        Do you choose to go to the {hobby.toLowerCase()} event, or would you
-        rather stay home?
-      </p>
       <button onClick={() => onExit(Choice.event)}>Go to the event</button>
       <button onClick={() => onExit(Choice.home)}>Stay home</button>
     </div>

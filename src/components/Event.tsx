@@ -1,4 +1,4 @@
-import { INIT_BELONGING, INIT_EXCLUSION, getDeltaStat, getStatChangeText } from "../helpers";
+import { DEFAULT_TEXT_ANIMATION_DELAY, INIT_BELONGING, INIT_EXCLUSION, getDeltaStat, getStatChangeText } from "../helpers";
 import { Choice, Event as EventType, EventHistory, EventHistoryLog, Stat } from "../types";
 
 interface EventProps {
@@ -43,7 +43,7 @@ export default function Event(props: EventProps) {
   ]
 
   nextEvent.map(expectation => {
-    texts.push(expectation.text)
+    // texts.push(expectation.text)
 
     expectation.occurrences.map(occurrence => {
       texts.push(occurrence.text)
@@ -54,8 +54,16 @@ export default function Event(props: EventProps) {
   return (
     <div className="card">
       {texts.map((text, i) => {
+        const animationDelay = `${i * DEFAULT_TEXT_ANIMATION_DELAY}ms`
+        
         return (
-          <p key={`text-${i}`} className="fade-in" style={{ animationDelay: `${i * 1000}ms` }}>{ text }</p>
+          <p 
+            key={`text-${i}`} 
+            className="fade-in" 
+            style={{ animationDelay }}
+          >
+            { text }
+          </p>
         )
       })}
       <button onClick={() => onExit(eventHistory)}>Continue</button>

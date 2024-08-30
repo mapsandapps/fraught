@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { INIT_BELONGING, INIT_EXCLUSION, clampStat, getRandomInt } from "../helpers";
 import { Choice, EventHistory, EventHistoryLog, Stat } from "../types";
 // import TextAnimation from './TextAnimation';
@@ -14,6 +14,7 @@ interface EventProps {
 export default function Event(props: EventProps) {
   const { eventHistoryLog, hobby, onExit } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleText, setVisibleText] = useState('');
 
   const pluralRule = new Intl.PluralRules("en-US", { type: "ordinal" });
 
@@ -47,59 +48,26 @@ export default function Event(props: EventProps) {
     `Your exclusion changed by ${deltaExclusion}.`
   ]
 
-  // useEffect(() => {
-  //   let timeout;
+  useEffect(() => {
+    let timeout;
 
-  //   const nextText = texts[currentIndex]
+    const nextText = texts[currentIndex]
 
-  //   if (!nextText) return
+    if (!nextText) return
 
-  //   timeout = setTimeout(() => {
-  //     setCurrentIndex(currentIndex + 1)
-  //     setVisibleText(visibleText + nextText + '\n\n')
-  //   }, 400);
+    timeout = setTimeout(() => {
+      setCurrentIndex(currentIndex + 1)
+      setVisibleText(visibleText + nextText + '\n\n')
+    }, 1000);
 
-  //   // TODO: i guess animate the bar here? or inside the above timeout?
+    // TODO: i guess animate the bar here? or inside the above timeout?
 
-  //   return () => clearTimeout(timeout);
-  // }, [currentIndex])
-
-  const onFinish = () => {
-    console.log('onFinish')
-    setCurrentIndex(currentIndex + 1)
-    console.log(currentIndex)
-  }
-
-  const onFinishText = () => {
-    // console.log('onFinishText', index)
-    setCurrentIndex(currentIndex + 1);
-    console.log(currentIndex)
-  }
+    return () => clearTimeout(timeout);
+  }, [currentIndex])
 
   return (
     <div className="card">
-      {texts.map((text, i) => {
-        return (
-          <span key={`text-${i}`} style={{ visibility: i < currentIndex ? 'visible' : 'hidden'}}>{text}</span>
-        )
-      })}
-      {currentIndex < texts.length - 1 && (
-        <TypeAnimation
-          sequence={[
-            texts[0],
-            1000,
-            onFinishText,
-            texts[1],
-            1000,
-            onFinishText,
-            texts[2],
-            onFinish,
-          ]}
-          wrapper="span"
-          omitDeletionAnimation
-          cursor={false}
-        />
-      )}
+      { visibleText }
       <button onClick={() => onExit(eventHistory)}>Continue</button>
     </div>
   );

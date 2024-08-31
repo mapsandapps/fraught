@@ -11,12 +11,20 @@ jobs:
           node-version: '20.x'
       - run: npm ci
       - run: npm run build --if-present
-      - name: Archive Release
-        uses: thedoctor0/zip-release@0.7.5
-        with:
-          path: './dist'
-          type: 'zip'
-          filename: 'release.zip'
+
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Archive Release
+      uses: thedoctor0/zip-release@0.7.5
+      with:
+        path: './dist'
+        type: 'zip'
+        filename: 'release.zip'
+          
+  release:
+    runs-on: ubuntu-latest
+    steps:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:

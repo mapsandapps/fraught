@@ -34,6 +34,7 @@ export type Occurrence = {
   value?: number;
   direction: Direction;
   stat: Stat;
+  timing?: number; // ms
 };
 
 export type EventHistory = {

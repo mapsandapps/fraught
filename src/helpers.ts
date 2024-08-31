@@ -4,6 +4,7 @@ import { filter, flatten, random, sampleSize, sum } from 'lodash';
 
 export const DEFAULT_HOBBY = "Line dancing";
 export const DEFAULT_TEXT_ANIMATION_DELAY = 1000; // ms
+export const DEFAULT_METER_ANIMATION_DELAY = 700; // ms
 export const INIT_BELONGING = 50;
 export const MAX_BELONGING = 100;
 export const INIT_EXCLUSION = 50;
@@ -56,18 +57,20 @@ export const getEvent = (): Event => {
 }
 
 export const getStatChangeText = (occurrence: Occurrence): string => {
-  console.log(occurrence)
-
   if (occurrence.direction === Direction.neutral) return ''
 
   return `Your ${occurrence.stat} ${occurrence.direction === Direction.positive ? 'incresed' : 'decreased'} by ${occurrence.value}.`
 }
 
-// TODO: do i actually need this? not sure i need these aggregated...
-export const getDeltaStat = (event: Event, stat: Stat): number => {
-  const occurrences = flatten(event.map((expectation) => {
+export const getOccurrencesForEvent = (event: Event): Occurrence[] => {
+  return flatten(event.map(expectation => {
     return expectation.occurrences
   }))
+}
+
+// TODO: do i actually need this? not sure i need these aggregated...
+export const getDeltaStat = (event: Event, stat: Stat): number => {
+  const occurrences = getOccurrencesForEvent(event)
 
   const occurrencesOfStat = filter(occurrences, (occurrence: Occurrence) => {
     return occurrence.stat === stat

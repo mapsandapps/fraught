@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { DEFAULT_TEXT_ANIMATION_DELAY, INIT_BELONGING, INIT_EXCLUSION, getDeltaStat, getStatChangeText } from "../helpers";
 import { Choice, Event as EventType, EventHistory, EventHistoryLog, Stat } from "../types";
+import Meters from "./Meters";
 
 interface EventProps {
   hobby: string;
@@ -46,8 +47,11 @@ export default function Event(props: EventProps) {
 
   nextEvent.map(expectation => {
     // texts.push(expectation.text)
+    let timing = texts.length * DEFAULT_TEXT_ANIMATION_DELAY
 
     expectation.occurrences.map(occurrence => {
+      timing += DEFAULT_TEXT_ANIMATION_DELAY
+      occurrence.timing = timing
       texts.push(occurrence.text)
       texts.push(getStatChangeText(occurrence))
     })
@@ -60,23 +64,26 @@ export default function Event(props: EventProps) {
   }, animationDuration)
 
   return (
-    <div className="card">
-      {texts.map((text, i) => {
-        const animationDelay = `${i * DEFAULT_TEXT_ANIMATION_DELAY}ms`
+    <>
+      <div className="card">
+        {texts.map((text, i) => {
+          const animationDelay = `${i * DEFAULT_TEXT_ANIMATION_DELAY}ms`
 
-        return (
-          <p 
-            key={`text-${i}`} 
-            className="fade-in" 
-            style={{ animationDelay }}
-          >
-            { text }
-          </p>
-        )
-      })}
-      {buttonsShown && (
-        <button onClick={() => onExit(eventHistory)}>Continue</button>
-      )}
-    </div>
+          return (
+            <p 
+              key={`text-${i}`} 
+              className="fade-in" 
+              style={{ animationDelay }}
+            >
+              { text }
+            </p>
+          )
+        })}
+        {buttonsShown && (
+          <button onClick={() => onExit(eventHistory)}>Continue</button>
+        )}
+      </div>
+      <Meters event={nextEvent} eventHistoryLog={eventHistoryLog} />
+    </>
   );
 }

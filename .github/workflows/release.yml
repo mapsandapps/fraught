@@ -1,25 +1,6 @@
 name: Create Archive
 on: [push]
 jobs:
-  tag:
-    name: Create tag
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Get version info
-        id: version_info
-        run: |
-          echo "build_version=v0.0.${{ github.run_number }}" >> $GITHUB_OUTPUT
-        shell: bash
-      - name: Create tag
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/${{ steps.version_info.outputs.build_version }}',
-              sha: context.sha
-            })
   release:
     runs-on: ubuntu-latest
     steps:
@@ -40,4 +21,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: release.zip
-          tag_name: ${{ steps.version_info.outputs.build_version }}
+          tag_name: v0.0.${{ github.run_number }}

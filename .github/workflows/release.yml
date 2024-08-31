@@ -1,4 +1,4 @@
-name: Create Archive
+name: Release
 on: [push]
 jobs:
   release:
@@ -20,6 +20,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SECRET_TOKEN }}
           files: release.zip
           tag_name: v0.0.${{ github.run_number }}

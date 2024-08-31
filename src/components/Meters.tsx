@@ -28,6 +28,7 @@ export default function Meters(props: MetersProps) {
 
   return (
     <div className="meters">
+      <br />
       <svg viewBox={`0 0 ${MAX_BELONGING} 10`}>
         <rect className="container" width={MAX_BELONGING} />
         <rect className="filled belonging" width={lastEvent.finalBelonging} />
@@ -115,6 +116,7 @@ export default function Meters(props: MetersProps) {
           )
         })}
       </svg>
+      <br />
     </div>
   );
 }

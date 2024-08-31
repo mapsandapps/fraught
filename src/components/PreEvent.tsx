@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DEFAULT_TEXT_ANIMATION_DELAY } from "../helpers";
-import { Choice, Event } from "../types";
+import { Choice, Event, EventHistoryLog } from "../types";
 import Meters from "./Meters";
 
 interface PreEventProps {
@@ -35,6 +35,18 @@ export default function PreEvent(props: PreEventProps) {
     <div className="card">
       {texts.map((text, i) => {
         const animationDelay = `${i * DEFAULT_TEXT_ANIMATION_DELAY}ms`
+
+        if (i > 0 && i < texts.length - 1) {
+          return (
+            <li 
+              key={`text-${i}`} 
+              className="fade-in-text" 
+              style={{ animationDelay }}
+            >
+              { text }
+            </li>
+          )
+        }
 
         return (
           <p 

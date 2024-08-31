@@ -43,7 +43,6 @@ function App() {
           {gameState}
         </pre>
       </div>
-      <h1>Fraught</h1>
       {gameState === GameState.start && <Start onExit={exitStart} />}
       {gameState === GameState.preEvent && <PreEvent hobby={hobby} nextEvent={nextEvent} eventHistoryLog={eventHistoryLog} onExit={exitPreEvent} />}
       {gameState === GameState.event && <Event hobby={hobby} nextEvent={nextEvent} eventHistoryLog={eventHistoryLog} onExit={exitEvent} />}

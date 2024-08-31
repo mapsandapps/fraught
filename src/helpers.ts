@@ -28,7 +28,7 @@ export const clampStat = (value: number, stat: Stat): number => {
 };
 
 // pull a random one of these to find out how many expectations you have about an event
-const SAMPLE_OF_EXPECTATIONS = [1, 1, 2, 2, 2, 2, 2, 3, 3, 4]
+const SAMPLE_OF_EXPECTATIONS = [1, 1, 2, 2, 2, 2, 2, 2, 3, 3]
 const SAMPLE_OF_OCCURRENCES = [1, 1, 1, 1, 2]
 
 const getNumberOfExpectations = () => SAMPLE_OF_EXPECTATIONS[random(0, SAMPLE_OF_EXPECTATIONS.length - 1)]

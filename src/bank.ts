@@ -188,7 +188,7 @@ export const expectations: Expectation[] = [
       }
     ]
   },{
-    text: 'If I go, I\'ll get to participate in the hobby that I love!',
+    text: '"If I go, I\'ll get to participate in the hobby that I love!"',
     occurrences: [
       {
         text: 'You went and had a great time!',

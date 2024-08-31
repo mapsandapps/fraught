@@ -1,5 +1,12 @@
 # Fraught
 
+Project links: 
+* [Itch (play the game here!)](https://mapsandapps.itch.io/fraught)
+* [Vercel deploy](https://fraught-git-main-mapsandapps-projects.vercel.app/)
+* [Vercel admin](https://vercel.com/mapsandapps-projects/fraught)
+* [Stackblitz](https://stackblitz.com/~/github.com/mapsandapps/fraught)
+* [GitHub](https://github.com/mapsandapps/fraught)
+
 Created for [Eggjam #23](https://itch.io/jam/eggjam-23). The theme of the jam is 'Fighting Words 🥊'. This game doesn't actually match the theme, but I did come up with the idea because of the theme. Hopefully that's good enough.
 
 It has a very different tone from any game I've made before. It's too early to see if this is a trend or a one-off.

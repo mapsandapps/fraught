@@ -17,7 +17,7 @@ jobs:
       - name: Zip Release
         uses: thedoctor0/zip-release@0.7.5
         with:
-          path: './dist'
+          directory: './dist'
           type: 'zip'
           filename: 'release.zip'
       - name: Release

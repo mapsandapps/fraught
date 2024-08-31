@@ -70,8 +70,8 @@ export default function Home(props: HomeProps) {
           </p>
         )
       })}
-      <Meters event={event} eventHistoryLog={eventHistoryLog} />
       <button onClick={() => onExit(eventHistory)}>Continue</button>
+      <Meters event={event} eventHistoryLog={eventHistoryLog} />
     </div>
   );
 }

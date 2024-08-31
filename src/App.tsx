@@ -47,6 +47,12 @@ function App() {
       {gameState === GameState.preEvent && <PreEvent hobby={hobby} nextEvent={nextEvent} eventHistoryLog={eventHistoryLog} onExit={exitPreEvent} />}
       {gameState === GameState.event && <Event hobby={hobby} nextEvent={nextEvent} eventHistoryLog={eventHistoryLog} onExit={exitEvent} />}
       {gameState === GameState.home && <Home hobby={hobby} eventHistoryLog={eventHistoryLog} onExit={exitEvent} />}
+      <svg viewBox="0 0 24 24">
+        <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width="4" height="4">
+          {/* <rect width="24" height="24" fill="currentColor" /> */}
+          <path d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2" style={{ stroke: '#808080', strokeWidth: 1 }}></path>
+        </pattern>
+      </svg>
     </>
   );
 }

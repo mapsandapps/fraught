@@ -62,10 +62,10 @@ export default function Meters(props: MetersProps) {
               </g>
               <g className="fade-in-out-meter" style={{ animationDelay }}>
                 {occurrence.direction > 0 && (
-                  <rect x={prevBelonging} width={occurrence.value} height="10" fill="darkgreen" />
+                  <rect className="positive belonging" x={prevBelonging} width={occurrence.value} />
                 )}
                 {occurrence.direction < 0 && (
-                  <rect x={prevBelonging - occurrence.value} width={occurrence.value} height="10" fill="red" />
+                  <rect className="negative belonging" x={prevBelonging - occurrence.value} width={occurrence.value} />
                 )}
               </g>
             </>
@@ -106,10 +106,11 @@ export default function Meters(props: MetersProps) {
               </g>
               <g className="fade-in-out-meter" style={{ animationDelay }}>
                 {occurrence.direction > 0 && (
-                  <rect x={prevExclusion} width={occurrence.value} height="10" fill="darkred" />
+                  <rect className="positive exclusion" x={prevExclusion} width={occurrence.value} />
                 )}
                 {occurrence.direction < 0 && (
-                  <rect x={prevExclusion - occurrence.value} width={occurrence.value} height="10" fill="green" />
+                  //  fill="url(#diagonalHatch)"
+                  <rect className="negative exclusion" x={prevExclusion - occurrence.value} width={occurrence.value} />
                 )}
               </g>
             </>

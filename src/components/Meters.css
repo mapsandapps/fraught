@@ -1,10 +1,9 @@
-rect.container {
-  fill: #DEDEDE;
+rect {
   height: 10px;
 }
 
-rect.filled {
-  height: 10px;
+rect.container {
+  fill: #DEDEDE;
 }
 
 rect.filled.belonging {
@@ -12,5 +11,66 @@ rect.filled.belonging {
 }
 
 rect.filled.exclusion {
-  fill: #F15014;
+  fill: #F22813;
+}
+
+rect.positive.belonging {
+  fill: url(#diagonalHatch);
+}
+
+rect.negative.belonging {
+  fill: url(#diagonalHatch);
+}
+
+rect.positive.exclusion {
+  fill: url(#diagonalHatch);
+}
+
+rect.negative.exclusion {
+  fill: url(#diagonalHatch);
+}
+
+.plop-in {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-name: fadeinmeter;
+  animation-duration: 0;
+}
+
+.fade-in-meter {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-name: fadeinmeter;
+  animation-duration: 300ms;
+}
+
+@keyframes fadeinmeter {
+  0%  {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in-out-meter {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-name: fadeinoutmeter;
+  animation-duration: 600ms;
+}
+
+@keyframes fadeinoutmeter {
+  0%  {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

@@ -1,6 +1,6 @@
-import { Direction, Event, EventHistoryLog, Stat } from "../types";
-import { DEFAULT_METER_ANIMATION_DELAY, MAX_BELONGING, MAX_EXCLUSION, getOccurrencesForEvent } from "../helpers";
-import { useEffect, useState } from "react";
+import { Event, EventHistoryLog, Stat } from "../types";
+import { MAX_BELONGING, MAX_EXCLUSION, getOccurrencesForEvent } from "../helpers";
+import "./Meters.css";
 
 interface MetersProps {
   event?: Event
@@ -8,8 +8,8 @@ interface MetersProps {
 }
 
 export default function Meters(props: MetersProps) {
-  const TEXT_Y = 5;
-  const FONT_SIZE = '0.2em';
+  const TEXT_Y = 6.4;
+  const FONT_SIZE = '0.3em';
   const { event, eventHistoryLog } = props;
 
   const lastEvent = eventHistoryLog[eventHistoryLog.length - 1];
@@ -20,8 +20,6 @@ export default function Meters(props: MetersProps) {
     return occurrence.stat === Stat.belonging
   })
 
-  console.log(occurrences)
-
   const exclusionOccurrences = occurrences.filter(occurrence => {
     return occurrence.stat === Stat.exclusion
   })
@@ -30,10 +28,10 @@ export default function Meters(props: MetersProps) {
 
   return (
     <div className="meters">
-      <svg viewBox={`0 0 ${MAX_BELONGING} 10`} width="200">
-        <rect width={MAX_BELONGING} height="10" fill="lightgray" />
-        <rect width={lastEvent.finalBelonging} height="10" fill="green"></rect>
-        <text x={10} y={TEXT_Y} fontSize={FONT_SIZE}>
+      <svg viewBox={`0 0 ${MAX_BELONGING} 10`}>
+        <rect className="container" width={MAX_BELONGING} />
+        <rect className="filled belonging" width={lastEvent.finalBelonging} />
+        <text x={2} y={TEXT_Y} fontSize={FONT_SIZE}>
           Belonging: {lastEvent.finalBelonging}%
         </text>
         {belongingOccurrences.map((occurrence, i) => {
@@ -55,9 +53,9 @@ export default function Meters(props: MetersProps) {
           return (
             <>
               <g className="plop-in" style={{ animationDelay }}>
-                <rect width={MAX_BELONGING} height="10" fill="lightgray" />
-                <rect width={belonging} height="10" fill="green"></rect>
-                <text x={10} y={TEXT_Y} fontSize={FONT_SIZE}>
+                <rect className="container" width={MAX_BELONGING} />
+                <rect className="filled belonging" width={belonging} />
+                <text x={2} y={TEXT_Y} fontSize={FONT_SIZE}>
                   Belonging: {belonging}%
                 </text>
               </g>
@@ -74,10 +72,10 @@ export default function Meters(props: MetersProps) {
         })}
       </svg>
       <br />
-      <svg viewBox={`0 0 ${MAX_EXCLUSION} 10`} width="200">
-        <rect width={MAX_EXCLUSION} height="10" fill="lightgray" />
-        <rect width={lastEvent.finalExclusion} height="10" fill="red"></rect>
-        <text x={10} y={TEXT_Y} fontSize={FONT_SIZE}>
+      <svg viewBox={`0 0 ${MAX_EXCLUSION} 10`}>
+        <rect className="container" width={MAX_EXCLUSION} />
+        <rect className="filled exclusion" width={lastEvent.finalExclusion}></rect>
+        <text x={2} y={TEXT_Y} fontSize={FONT_SIZE}>
           Exclusion: {lastEvent.finalExclusion}%
         </text>
         {exclusionOccurrences.map((occurrence, i) => {
@@ -99,9 +97,9 @@ export default function Meters(props: MetersProps) {
           return (
             <>
               <g className="plop-in" style={{ animationDelay }}>
-                <rect width={MAX_EXCLUSION} height="10" fill="lightgray" />
-                <rect width={exclusion} height="10" fill="red"></rect>
-                <text x={10} y={TEXT_Y} fontSize={FONT_SIZE}>
+                <rect className="container" width={MAX_EXCLUSION} />
+                <rect className="filled exclusion" width={exclusion}></rect>
+                <text x={2} y={TEXT_Y} fontSize={FONT_SIZE}>
                   Exclusion: {exclusion}%
                 </text>
               </g>

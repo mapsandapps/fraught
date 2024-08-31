@@ -1,0 +1,16 @@
+rect.container {
+  fill: #DEDEDE;
+  height: 10px;
+}
+
+rect.filled {
+  height: 10px;
+}
+
+rect.filled.belonging {
+  fill: #04DE8C;
+}
+
+rect.filled.exclusion {
+  fill: #F15014;
+}

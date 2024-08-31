@@ -5,12 +5,12 @@ import { filter, flatten, random, sampleSize, sum } from 'lodash';
 export const DEFAULT_HOBBY = "Line dancing";
 export const DEFAULT_TEXT_ANIMATION_DELAY = 1000; // ms
 export const DEFAULT_METER_ANIMATION_DELAY = 700; // ms
-export const INIT_BELONGING = 50;
+export const INIT_BELONGING = 30;
 export const MAX_BELONGING = 100;
-export const INIT_EXCLUSION = 50;
+export const INIT_EXCLUSION = 30;
 export const MAX_EXCLUSION = 100;
-export const HOME_BELONGING = 10;
-export const HOME_EXCLUSION = 10;
+export const HOME_BELONGING = 5;
+export const HOME_EXCLUSION = 5;
 export const MAX_BELONGING_DELTA = 10;
 export const MAX_EXCLUSION_DELTA = 10;
 

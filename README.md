@@ -2,7 +2,7 @@
 
 Project links: 
 * [Itch (play the game here!)](https://mapsandapps.itch.io/fraught)
-* [Vercel deploy](https://fraught-git-main-mapsandapps-projects.vercel.app/)
+* [Vercel deploy (generally not needed)](https://fraught-git-main-mapsandapps-projects.vercel.app/)
 * [Vercel admin](https://vercel.com/mapsandapps-projects/fraught)
 * [Stackblitz](https://stackblitz.com/~/github.com/mapsandapps/fraught)
 * [GitHub](https://github.com/mapsandapps/fraught)
@@ -13,7 +13,13 @@ It has a very different tone from any game I've made before. It's too early to s
 
 I originally planned to make this in Twine, but then my time & programming commitments changed, and I decided to do the fastest thing possible which (for me) was building it in React.
 
-I'm using a StackBlitz starter.
+I'm using a StackBlitz React & Vite starter.
+
+## Deploying to Itch
+
+When new code is pushed to GitHub, a GitHub action creates a release. The release runs `npm run build` and then the dist folder is zipped and uploaded to GitHub. You can view the releases [here](https://github.com/mapsandapps/fraught/releases).
+
+To deploy to Itch, download the zip from the release and upload it to Itch.
 
 ## React + TypeScript + Vite
 

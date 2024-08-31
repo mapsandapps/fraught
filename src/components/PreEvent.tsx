@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { DEFAULT_TEXT_ANIMATION_DELAY } from "../helpers";
 import { Choice, Event } from "../types";
+import Meters from "./Meters";
 
 interface PreEventProps {
+  eventHistoryLog: EventHistoryLog;
   hobby: string;
   nextEvent: Event;
   onExit: (choice: Choice) => void;
 }
 
 export default function PreEvent(props: PreEventProps) {
-  const { hobby, nextEvent, onExit } = props;
+  const { eventHistoryLog, hobby, nextEvent, onExit } = props;
   const [buttonsShown, setButtonsShown] = useState(false)
 
   const texts = [
@@ -50,6 +52,7 @@ export default function PreEvent(props: PreEventProps) {
           <button onClick={() => onExit(Choice.home)}>Stay home</button>
         </>
       )}
+      <Meters eventHistoryLog={eventHistoryLog} />
     </div>
   );
 }

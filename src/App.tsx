@@ -37,10 +37,15 @@ function App() {
 
   return (
     <>
+      <div className="debug">
+        <pre>
+          debug: <br />
+          {gameState}
+        </pre>
+      </div>
       <h1>Fraught</h1>
-      {gameState}
       {gameState === GameState.start && <Start onExit={exitStart} />}
-      {gameState === GameState.preEvent && <PreEvent hobby={hobby} nextEvent={nextEvent} onExit={exitPreEvent} />}
+      {gameState === GameState.preEvent && <PreEvent hobby={hobby} nextEvent={nextEvent} eventHistoryLog={eventHistoryLog} onExit={exitPreEvent} />}
       {gameState === GameState.event && <Event hobby={hobby} nextEvent={nextEvent} eventHistoryLog={eventHistoryLog} onExit={exitEvent} />}
       {gameState === GameState.home && <Home hobby={hobby} eventHistoryLog={eventHistoryLog} onExit={exitEvent} />}
     </>

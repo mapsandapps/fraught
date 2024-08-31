@@ -77,7 +77,9 @@ export const getDeltaStat = (event: Event, stat: Stat): number => {
   })
 
   const valuesOfStat = occurrencesOfStat.map(occurrence => {
-    return occurrence.value
+    if (!occurrence.value) return 0
+
+    return occurrence.value * occurrence.direction
   })
 
   return sum(valuesOfStat)

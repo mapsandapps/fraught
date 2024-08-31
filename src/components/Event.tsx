@@ -54,6 +54,7 @@ export default function Event(props: EventProps) {
       occurrence.timing = timing
       texts.push(occurrence.text)
       texts.push(getStatChangeText(occurrence))
+      timing += DEFAULT_TEXT_ANIMATION_DELAY
     })
   })
 

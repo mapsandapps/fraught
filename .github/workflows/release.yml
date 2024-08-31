@@ -4,16 +4,6 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Create tag
-        uses: actions/github-script@v5
-        with:
-          script: |
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/v0.0.${{ github.run_number }}',
-              sha: context.sha
-            })
       - uses: actions/checkout@v4
       - name: Use Node.js
         uses: actions/setup-node@v4

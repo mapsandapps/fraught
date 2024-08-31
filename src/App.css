@@ -22,18 +22,60 @@ h1 {
   text-align: center;
 }
 
-.fade-in {
+.fade-in-text {
   opacity: 0.04;
   animation-fill-mode: forwards;
-  animation-name: fadein;
+  animation-name: fadeintext;
   animation-duration: 300ms;
 }
 
-@keyframes fadein {
+@keyframes fadeintext {
   0%  {
     opacity: 0.04;
   }
   100% {
     opacity: 1;
+  }
+}
+
+.plop-in {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-name: fadeinmeter;
+  animation-duration: 0;
+}
+
+.fade-in-meter {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-name: fadeinmeter;
+  animation-duration: 300ms;
+}
+
+@keyframes fadeinmeter {
+  0%  {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in-out-meter {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-name: fadeinoutmeter;
+  animation-duration: 300ms;
+}
+
+@keyframes fadeinoutmeter {
+  0%  {
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

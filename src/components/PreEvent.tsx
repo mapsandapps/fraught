@@ -37,7 +37,7 @@ export default function PreEvent(props: PreEventProps) {
         return (
           <p 
             key={`text-${i}`} 
-            className="fade-in" 
+            className="fade-in-text" 
             style={{ animationDelay }}
           >
             { text }

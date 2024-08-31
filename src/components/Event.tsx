@@ -72,7 +72,7 @@ export default function Event(props: EventProps) {
           return (
             <p 
               key={`text-${i}`} 
-              className="fade-in" 
+              className="fade-in-text" 
               style={{ animationDelay }}
             >
               { text }

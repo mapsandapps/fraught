@@ -3,8 +3,7 @@ import { Direction, Event, Occurrence, Stat } from "./types";
 import { filter, flatten, random, sampleSize, sum } from 'lodash';
 
 export const DEFAULT_HOBBY = "Line dancing";
-export const DEFAULT_TEXT_ANIMATION_DELAY = 1000; // ms
-export const DEFAULT_METER_ANIMATION_DELAY = 700; // ms
+export const DEFAULT_TEXT_ANIMATION_DELAY = 2000; // ms
 export const INIT_BELONGING = 30;
 export const MAX_BELONGING = 100;
 export const INIT_EXCLUSION = 30;

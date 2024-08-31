@@ -52,7 +52,7 @@ export default function Meters(props: MetersProps) {
           const animationDelay = `${occurrence.timing}ms`
 
           return (
-            <>
+            <g key={`belonging-occurrence-${i}`}>
               <g className="plop-in" style={{ animationDelay }}>
                 <rect className="container" width={MAX_BELONGING} />
                 <rect className="filled belonging" width={belonging} />
@@ -68,7 +68,7 @@ export default function Meters(props: MetersProps) {
                   <rect className="negative belonging" x={prevBelonging - occurrence.value} width={occurrence.value} />
                 )}
               </g>
-            </>
+            </g>
           )
         })}
       </svg>
@@ -96,7 +96,7 @@ export default function Meters(props: MetersProps) {
           const animationDelay = `${occurrence.timing}ms`
 
           return (
-            <>
+            <g key={`exclusion-occurrence-${i}`}>
               <g className="plop-in" style={{ animationDelay }}>
                 <rect className="container" width={MAX_EXCLUSION} />
                 <rect className="filled exclusion" width={exclusion}></rect>
@@ -113,7 +113,7 @@ export default function Meters(props: MetersProps) {
                   <rect className="negative exclusion" x={prevExclusion - occurrence.value} width={occurrence.value} />
                 )}
               </g>
-            </>
+            </g>
           )
         })}
       </svg>

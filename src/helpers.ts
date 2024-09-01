@@ -3,8 +3,7 @@ import { Direction, Event, EventHistory, Occurrence, Stat, WinLossCondition } fr
 import { filter, flatten, inRange, random, sampleSize, sum } from 'lodash';
 
 export const DEFAULT_HOBBY = "Line dancing";
-// TODO: set back to ~2000
-export const DEFAULT_TEXT_ANIMATION_DELAY = 500; // ms
+export const DEFAULT_TEXT_ANIMATION_DELAY = 2000; // ms
 export const INIT_BELONGING = 90;
 export const MAX_BELONGING = 100;
 export const INIT_EXCLUSION = 90;

@@ -37,6 +37,15 @@ rect.negative.exclusion {
   animation-duration: 0;
 }
 
+@keyframes fadeinmeter {
+  0%  {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .fade-in-out-meter {
   opacity: 0;
   animation-fill-mode: forwards;

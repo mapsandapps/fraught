@@ -1,5 +1,5 @@
 import { Event, EventHistoryLog, Stat } from "../types";
-import { MAX_BELONGING, MAX_EXCLUSION, getOccurrencesForEvent } from "../helpers";
+import { DEFAULT_TEXT_ANIMATION_DELAY, MAX_BELONGING, MAX_EXCLUSION, getOccurrencesForEvent } from "../helpers";
 import "./Meters.css";
 
 interface MetersProps {
@@ -60,7 +60,7 @@ export default function Meters(props: MetersProps) {
                   Belonging: {belonging}%
                 </text>
               </g>
-              <g className="fade-in-out-meter" style={{ animationDelay }}>
+              <g className="fade-in-out-meter" style={{ animationDelay, animationDuration: `${DEFAULT_TEXT_ANIMATION_DELAY * 0.6}ms` }}>
                 {occurrence.direction > 0 && (
                   <rect className="positive belonging" x={prevBelonging} width={occurrence.value} />
                 )}
@@ -104,7 +104,7 @@ export default function Meters(props: MetersProps) {
                   Exclusion: {exclusion}%
                 </text>
               </g>
-              <g className="fade-in-out-meter" style={{ animationDelay }}>
+              <g className="fade-in-out-meter" style={{ animationDelay, animationDuration: `${DEFAULT_TEXT_ANIMATION_DELAY * 0.3}ms` }}>
                 {occurrence.direction > 0 && (
                   <rect className="positive exclusion" x={prevExclusion} width={occurrence.value} />
                 )}

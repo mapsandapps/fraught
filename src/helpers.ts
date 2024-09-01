@@ -3,28 +3,16 @@ import { Direction, Event, EventHistory, Occurrence, Stat, WinLossCondition } fr
 import { filter, flatten, inRange, random, sampleSize, sum } from 'lodash';
 
 export const DEFAULT_HOBBY = "Line dancing";
-export const DEFAULT_TEXT_ANIMATION_DELAY = 2000; // ms
-export const INIT_BELONGING = 30;
+// TODO: set back to ~2000
+export const DEFAULT_TEXT_ANIMATION_DELAY = 500; // ms
+export const INIT_BELONGING = 90;
 export const MAX_BELONGING = 100;
-export const INIT_EXCLUSION = 30;
+export const INIT_EXCLUSION = 90;
 export const MAX_EXCLUSION = 100;
 export const HOME_BELONGING = 5;
 export const HOME_EXCLUSION = 5;
 export const MAX_BELONGING_DELTA = 10;
 export const MAX_EXCLUSION_DELTA = 10;
-
-export const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
-
-// TODO: is this still used?
-export const clampStat = (value: number, stat: Stat): number => {
-  if (stat === Stat.belonging) {
-    return clamp(value, 0, MAX_BELONGING);
-  } else if (stat === Stat.exclusion) {
-    return clamp(value, 0, MAX_EXCLUSION);
-  }
-  console.warn("Unknown stat");
-  return clamp(value, 0, 100);
-};
 
 // pull a random one of these to find out how many expectations you have about an event
 const SAMPLE_OF_EXPECTATIONS = [1, 1, 2, 2, 2, 2, 2, 2, 3, 3]
@@ -67,7 +55,6 @@ export const getOccurrencesForEvent = (event: Event): Occurrence[] => {
   }))
 }
 
-// TODO: do i actually need this? not sure i need these aggregated...
 export const getDeltaStat = (event: Event, stat: Stat): number => {
   const occurrences = getOccurrencesForEvent(event)
 
@@ -88,19 +75,19 @@ export const checkForWinOrLoss = (eventHistory: EventHistory): WinLossCondition 
   const { finalBelonging, finalExclusion } = eventHistory
   if (inRange(finalBelonging, 0, 100) && inRange(finalExclusion, 0, 100)) return null
 
-  if (finalBelonging === 0 && finalExclusion === 0) return WinLossCondition.bothMin
+  if (finalBelonging <= 0 && finalExclusion <= 0) return WinLossCondition.bothMin
 
-  if (finalBelonging === 100 && finalExclusion === 100) return WinLossCondition.bothMax
+  if (finalBelonging >= 100 && finalExclusion >= 100) return WinLossCondition.bothMax
 
   // this should get returned even if exclusion === 0
-  if (finalBelonging === 100) return WinLossCondition.belongingMax
+  if (finalBelonging >= 100) return WinLossCondition.belongingMax
 
   // this should get returned even if belonging === 0
-  if (finalExclusion === 100) return WinLossCondition.exclusionMax
+  if (finalExclusion >= 100) return WinLossCondition.exclusionMax
 
-  if (finalBelonging === 0) return WinLossCondition.belongingMin
+  if (finalBelonging <= 0) return WinLossCondition.belongingMin
 
-  if (finalExclusion === 0) return WinLossCondition.exclusionMin
+  if (finalExclusion <= 0) return WinLossCondition.exclusionMin
 
   console.warn('Unexpected condition occurred')
   return null

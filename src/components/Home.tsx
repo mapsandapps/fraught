@@ -1,6 +1,7 @@
 import { Choice, Direction, Event, EventHistory, EventHistoryLog, Stat } from "../types";
-import { DEFAULT_TEXT_ANIMATION_DELAY, HOME_BELONGING, HOME_EXCLUSION, clampStat } from "../helpers";
+import { DEFAULT_TEXT_ANIMATION_DELAY, HOME_BELONGING, HOME_EXCLUSION } from "../helpers";
 import Meters from "./Meters";
+import { useState } from "react";
 
 interface HomeProps {
   hobby: string;
@@ -10,16 +11,16 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   const { eventHistoryLog, hobby, onExit } = props;
+  const [buttonsShown, setButtonsShown] = useState(false)
 
   const prevBelonging = eventHistoryLog[eventHistoryLog.length - 1].finalBelonging;
   const prevExclusion = eventHistoryLog[eventHistoryLog.length - 1].finalExclusion;
 
-  // FIXME: these should actually be clamped, not the finalStat
   const deltaBelonging = HOME_BELONGING;
   const deltaExclusion = HOME_EXCLUSION;
 
-  const finalBelonging = clampStat(prevBelonging + deltaBelonging, Stat.belonging);
-  const finalExclusion = clampStat(prevExclusion + deltaExclusion, Stat.exclusion);
+  const finalBelonging = prevBelonging + deltaBelonging;
+  const finalExclusion = prevExclusion + deltaExclusion;
 
   const eventHistory = {
     choice: Choice.home,
@@ -55,6 +56,13 @@ export default function Home(props: HomeProps) {
     }
   ]
 
+  const animationDuration = texts.length * DEFAULT_TEXT_ANIMATION_DELAY
+
+  // TODO: seems like these are still shown too early
+  setTimeout(() => {
+    setButtonsShown(true)
+  }, animationDuration)
+
   return (
     <div className="card">
       {texts.map((text, i) => {
@@ -70,7 +78,9 @@ export default function Home(props: HomeProps) {
           </p>
         )
       })}
-      <button onClick={() => onExit(eventHistory)}>Continue</button>
+      {buttonsShown && (
+        <button onClick={() => onExit(eventHistory)}>Continue</button>
+      )}
       <Meters event={event} eventHistoryLog={eventHistoryLog} />
     </div>
   );

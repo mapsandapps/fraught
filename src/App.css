@@ -8,15 +8,12 @@ h1 {
   text-align: center;
 }
 
-/* .card {
-  padding: 2em;
-} */
-
 .fade-in-text {
   opacity: 0.04;
   animation-fill-mode: forwards;
   animation-name: fadeintext;
   animation-duration: 300ms;
+  /* animation-delay needs to be placed in tsx */
 }
 
 @keyframes fadeintext {

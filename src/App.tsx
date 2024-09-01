@@ -28,14 +28,17 @@ function App() {
   };
 
   const exitEvent = (eventHistory: EventHistory) => {
-    setWinLossCondition(checkForWinOrLoss(eventHistory))
-    if (winLossCondition) {
-      setGameState(GameState.win)
-    }
+    setEventHistoryLog([...eventHistoryLog, eventHistory])
 
-    setEventHistoryLog([...eventHistoryLog, eventHistory]);
-    setGameState(GameState.preEvent);
-    setNextEvent(getEvent())
+    const winLoss = checkForWinOrLoss(eventHistory)
+
+    setWinLossCondition(winLoss)
+    if (winLoss) {
+      setGameState(GameState.win)
+    } else {
+      setGameState(GameState.preEvent)
+      setNextEvent(getEvent())
+    }
   };
 
   const exitPreEvent = (choice: Choice) => {

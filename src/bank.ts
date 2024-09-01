@@ -29,6 +29,10 @@ export const expectations: Expectation[] = [
         text: 'You were able to help a newcomer learn the ropes.',
         stat: Stat.belonging,
         direction: Direction.positive
+      },{
+        text: 'You felt like your presence wasn\'t valued.',
+        stat: Stat.belonging,
+        direction: Direction.negative
       }
     ]
   },{

@@ -32,9 +32,6 @@ export default function Event(props: EventProps) {
   const finalBelonging = prevBelonging + deltaBelonging
   const finalExclusion = prevExclusion + deltaExclusion
 
-  // TODO: for each occurrence, check if it will be a win/loss condition
-
-  // TODO:
   const eventHistory = {
     choice: Choice.event,
     finalBelonging,

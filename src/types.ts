@@ -6,6 +6,16 @@ export enum GameState {
   preEvent = 'pre-event',
 }
 
+export enum WinLossCondition {
+  yearEnd = 'Year end',
+  bothMax = 'Both max',
+  bothMin = 'Both min',
+  belongingMax = 'Belonging max',
+  belongingMin = 'Belonging min',
+  exclusionMax = 'Exclusion max',
+  exclusionMin = 'Exclusion min'
+}
+
 export enum Direction {
   positive = 1,
   negative = -1,

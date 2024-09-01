@@ -1,6 +1,6 @@
 import { expectations } from "./bank";
-import { Direction, Event, Occurrence, Stat } from "./types";
-import { filter, flatten, random, sampleSize, sum } from 'lodash';
+import { Direction, Event, EventHistory, Occurrence, Stat, WinLossCondition } from "./types";
+import { filter, flatten, inRange, random, sampleSize, sum } from 'lodash';
 
 export const DEFAULT_HOBBY = "Line dancing";
 export const DEFAULT_TEXT_ANIMATION_DELAY = 2000; // ms
@@ -82,4 +82,26 @@ export const getDeltaStat = (event: Event, stat: Stat): number => {
   })
 
   return sum(valuesOfStat)
+}
+
+export const checkForWinOrLoss = (eventHistory: EventHistory): WinLossCondition | null => {
+  const { finalBelonging, finalExclusion } = eventHistory
+  if (inRange(finalBelonging, 0, 100) && inRange(finalExclusion, 0, 100)) return null
+
+  if (finalBelonging === 0 && finalExclusion === 0) return WinLossCondition.bothMin
+
+  if (finalBelonging === 100 && finalExclusion === 100) return WinLossCondition.bothMax
+
+  // this should get returned even if exclusion === 0
+  if (finalBelonging === 100) return WinLossCondition.belongingMax
+
+  // this should get returned even if belonging === 0
+  if (finalExclusion === 100) return WinLossCondition.exclusionMax
+
+  if (finalBelonging === 0) return WinLossCondition.belongingMin
+
+  if (finalExclusion === 0) return WinLossCondition.exclusionMin
+
+  console.warn('Unexpected condition occurred')
+  return null
 }

@@ -40,7 +40,6 @@ export default function Event(props: EventProps) {
 
   const numberOfEventsAttended = countEventsAttended(eventHistoryLog) + 1
 
-  // FIXME: it should only count events with choice = Choice.event
   const texts = [
     `You attended your ${numberOfEventsAttended}${suffixes.get(pluralRule.select(numberOfEventsAttended))} ${hobby.toLowerCase()} event.`
   ]

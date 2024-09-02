@@ -1,4 +1,4 @@
-import { expectations } from "./bank";
+import { expectations, firstEventBank } from "./bank";
 import { Choice, Direction, Event, EventHistoryLog, Occurrence, Stat, WinLossCondition } from "./types";
 import { filter, flatten, inRange, last, random, sampleSize, sum } from 'lodash';
 
@@ -28,6 +28,28 @@ export const getMonth = (monthNumber: number): string => {
   return months[monthNumber]
 }
 
+const giveOccurrencesValues = (occurrences: Occurrence[]): Occurrence[] => {
+  occurrences.map(occurrence => {
+    const { direction, stat } = occurrence;
+    occurrence.value = direction === Direction.neutral ? 0 : stat === Stat.belonging ? random(1, MAX_BELONGING_DELTA) : random(1, MAX_EXCLUSION_DELTA);
+  })
+
+  return occurrences
+}
+
+export const getFirstEvent = (): Event => {
+  const numberOfOccurrences = getNumberOfOccurrences()
+
+  const occurrences = sampleSize(firstEventBank, numberOfOccurrences)
+
+  giveOccurrencesValues(occurrences)
+
+  return [{
+    text: '',
+    occurrences
+  }]
+}
+
 export const getEvent = (): Event => {
   const event: Event = []
   const sampledExpectations = sampleSize(expectations, getNumberOfExpectations())
@@ -36,10 +58,7 @@ export const getEvent = (): Event => {
     const numberOfOccurrences = getNumberOfOccurrences()
     const occurrences = sampleSize(expectation.occurrences, numberOfOccurrences)
 
-    occurrences.map(occurrence => {
-      const { direction, stat } = occurrence;
-      occurrence.value = direction === Direction.neutral ? 0 : stat === Stat.belonging ? random(1, MAX_BELONGING_DELTA) : random(1, MAX_EXCLUSION_DELTA);
-    })
+    giveOccurrencesValues(occurrences)
 
     event.push({
       text: expectation.text,

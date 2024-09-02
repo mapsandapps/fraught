@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { DEFAULT_HOBBY, INIT_BELONGING, INIT_EXCLUSION, checkForWinOrLoss, getEvent } from "./helpers";
+import { DEFAULT_HOBBY, INIT_BELONGING, INIT_EXCLUSION, checkForWinOrLoss, getEvent, getFirstEvent } from "./helpers";
 import Event from "./components/Event";
 import Home from "./components/Home";
 import PreEvent from "./components/PreEvent";
@@ -19,7 +19,7 @@ function App() {
   const [hobby, setHobby] = useState<string>(DEFAULT_HOBBY);
   const [gameState, setGameState] = useState<GameState>(GameState.start);
   const [eventHistoryLog, setEventHistoryLog] = useState<EventHistoryLog>([INIT_EVENT]);
-  const [nextEvent, setNextEvent] = useState<EventType>(getEvent())
+  const [nextEvent, setNextEvent] = useState<EventType>(getFirstEvent())
   const [winLossCondition, setWinLossCondition] = useState<WinLossCondition | null>(null)
 
   const exitStart = (hobby: string) => {
@@ -43,6 +43,10 @@ function App() {
   };
 
   const exitPreEvent = (choice: Choice) => {
+    if (choice === Choice.init) {
+      console.warn('Unexpected input to function')
+      return
+    }
     setGameState(GameState[choice]);
   };
 

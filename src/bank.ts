@@ -1,4 +1,28 @@
-import { Direction, Expectation, Stat } from "./types";
+import { Direction, Expectation, Occurrence, Stat } from "./types";
+
+export const firstEventBank: Occurrence[] = [
+  {
+    text: 'You met a lot of folks and had a great time.',
+    stat: Stat.belonging,
+    direction: Direction.positive
+  },{
+    text: 'You felt like your presence was valued.',
+    stat: Stat.belonging,
+    direction: Direction.positive
+  },{
+    text: 'A lot of helpful people were there.',
+    stat: Stat.belonging,
+    direction: Direction.positive
+  },{
+    text: 'You felt very welcomed by several of the attendees.',
+    stat: Stat.belonging,
+    direction: Direction.positive
+  },{
+    text: 'You learned a lot about the hobby.',
+    stat: Stat.belonging,
+    direction: Direction.positive
+  }
+]
 
 export const expectations: Expectation[] = [
   {

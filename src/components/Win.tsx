@@ -1,4 +1,5 @@
 import { WinLossCondition } from '../types';
+import AnimatedTextWithButtons from './AnimatedTextWithButtons';
 
 interface WinProps {
   hobby: string;
@@ -29,7 +30,9 @@ export default function Win(props: WinProps) {
       <p className="debug">
         { winLossCondition }, { hobby }
       </p>
-      <button onClick={() => window.location.reload()}>Start a new game</button>
+      <AnimatedTextWithButtons texts={texts}>
+        <button onClick={() => window.location.reload()}>Start a new game</button>
+      </AnimatedTextWithButtons>
     </div>
   );
 }

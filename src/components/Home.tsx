@@ -1,7 +1,7 @@
 import { Choice, Direction, Event, EventHistory, EventHistoryLog, Stat } from "../types";
-import { DEFAULT_TEXT_ANIMATION_DELAY, HOME_BELONGING, HOME_EXCLUSION } from "../helpers";
+import { HOME_BELONGING, HOME_EXCLUSION } from "../helpers";
 import Meters from "./Meters";
-import { useState } from "react";
+import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
 
 interface HomeProps {
   hobby: string;
@@ -11,7 +11,6 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   const { eventHistoryLog, hobby, onExit } = props;
-  const [buttonsShown, setButtonsShown] = useState(false)
 
   const prevBelonging = eventHistoryLog[eventHistoryLog.length - 1].finalBelonging;
   const prevExclusion = eventHistoryLog[eventHistoryLog.length - 1].finalExclusion;
@@ -56,31 +55,11 @@ export default function Home(props: HomeProps) {
     }
   ]
 
-  const animationDuration = texts.length * DEFAULT_TEXT_ANIMATION_DELAY
-
-  // TODO: seems like these are still shown too early
-  setTimeout(() => {
-    setButtonsShown(true)
-  }, animationDuration)
-
   return (
     <div className="card">
-      {texts.map((text, i) => {
-        const animationDelay = `${i * DEFAULT_TEXT_ANIMATION_DELAY}ms`
-
-        return (
-          <p 
-            key={`text-${i}`} 
-            className="fade-in-text" 
-            style={{ animationDelay }}
-          >
-            { text }
-          </p>
-        )
-      })}
-      {buttonsShown && (
+      <AnimatedTextWithButtons texts={texts}>
         <button onClick={() => onExit(eventHistory)}>Continue</button>
-      )}
+      </AnimatedTextWithButtons>
       <Meters event={event} eventHistoryLog={eventHistoryLog} />
     </div>
   );

@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { DEFAULT_TEXT_ANIMATION_DELAY, INIT_BELONGING, INIT_EXCLUSION, getDeltaStat, getStatChangeText } from "../helpers";
 import { Choice, Event as EventType, EventHistory, EventHistoryLog, Stat } from "../types";
 import Meters from "./Meters";
+import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
 
 interface EventProps {
   hobby: string;
@@ -12,7 +12,6 @@ interface EventProps {
 
 export default function Event(props: EventProps) {
   const { eventHistoryLog, hobby, nextEvent, onExit } = props;
-  const [buttonsShown, setButtonsShown] = useState(false)
 
   const pluralRule = new Intl.PluralRules("en-US", { type: "ordinal" });
 
@@ -55,31 +54,12 @@ export default function Event(props: EventProps) {
     })
   })
 
-  const animationDuration = texts.length * DEFAULT_TEXT_ANIMATION_DELAY
-
-  setTimeout(() => {
-    setButtonsShown(true)
-  }, animationDuration)
-
   return (
     <>
       <div className="card">
-        {texts.map((text, i) => {
-          const animationDelay = `${i * DEFAULT_TEXT_ANIMATION_DELAY}ms`
-
-          return (
-            <p 
-              key={`text-${i}`} 
-              className="fade-in-text" 
-              style={{ animationDelay }}
-            >
-              { text }
-            </p>
-          )
-        })}
-        {buttonsShown && (
+        <AnimatedTextWithButtons texts={texts}>
           <button onClick={() => onExit(eventHistory)}>Continue</button>
-        )}
+        </AnimatedTextWithButtons>
       </div>
       <Meters event={nextEvent} eventHistoryLog={eventHistoryLog} />
     </>

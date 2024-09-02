@@ -72,7 +72,7 @@ export const getDeltaStat = (event: Event, stat: Stat): number => {
 }
 
 export const checkForWinOrLoss = (eventHistory: EventHistory): WinLossCondition | null => {
-  return WinLossCondition.belongingMin
+  // return WinLossCondition.belongingMin
 
   const { finalBelonging, finalExclusion } = eventHistory
   if (inRange(finalBelonging, 0, 100) && inRange(finalExclusion, 0, 100)) return null

@@ -62,3 +62,22 @@
   stroke-dasharray: 8 8;
   fill: transparent;
 }
+
+
+@media (prefers-color-scheme: dark) {
+  .page rect {
+    fill: #242424;
+  }
+
+  .page text {
+    fill: rgba(255, 255, 255, 0.87);
+  }
+
+  .calendar-bar {
+    stroke: rgba(255, 255, 255, 0.87);
+  }
+
+  .calendar-perforate {
+    stroke: rgba(255, 255, 255, 0.87);
+  }
+}

@@ -30,11 +30,11 @@ export default function Month(props: MonthProps) {
         <g className='pages'>
           <g className='page new-month'>
             <rect x='4' y='8' />
-            <text x='64' y='56'>{ currentMonthName }</text>
+            <text x='64' y='58'>{ currentMonthName }</text>
           </g>
           <g className='page old-month'>
             <rect x='4' y='8' />
-            <text x='64' y='56'>{ prevMonthName }</text>
+            <text x='64' y='58'>{ prevMonthName }</text>
           </g>
         </g>
 

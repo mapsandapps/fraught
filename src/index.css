@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Inter;
+  src: url('./assets/Inter-VariableFont_opsz\,wght.ttf');
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -42,6 +47,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin-right: 16px;
 }
 
 button:hover {

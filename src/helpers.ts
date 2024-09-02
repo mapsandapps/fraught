@@ -72,7 +72,7 @@ export const getDeltaStat = (event: Event, stat: Stat): number => {
 }
 
 export const checkForWinOrLoss = (eventHistory: EventHistory): WinLossCondition | null => {
-  // return WinLossCondition.belongingMin
+  // return WinLossCondition.bothMin // for debug purposes
 
   const { finalBelonging, finalExclusion } = eventHistory
   if (inRange(finalBelonging, 0, 100) && inRange(finalExclusion, 0, 100)) return null
@@ -89,6 +89,7 @@ export const checkForWinOrLoss = (eventHistory: EventHistory): WinLossCondition 
 
   if (finalBelonging <= 0) return WinLossCondition.belongingMin
 
+  // i'm not sure if this should be a win condition, but it makes it easier for the game structure:
   if (finalExclusion <= 0) return WinLossCondition.exclusionMin
 
   console.warn('Unexpected condition occurred')

@@ -23,21 +23,21 @@ export default function Month(props: MonthProps) {
 
   return (
     // modified from https://www.reddit.com/r/svg/comments/1e3qehg/svg_animation_calendar_like/
-    <svg className="month-svg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 768' width='128' height='96'>
+    <svg className="month-svg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 96' width='128' height='96'>
       <rect className="calendar-bar" x='0' y='0' />
       
       <g className='pages'>
         <g className='page new-month'>
-          <rect x='32' y='64' />
-          <text x='512' y='448'>{ currentMonthName }</text>
+          <rect x='4' y='8' />
+          <text x='64' y='56'>{ currentMonthName }</text>
         </g>
         <g className='page old-month'>
           <rect x='32' y='64' />
-          <text x='512' y='448'>{ prevMonthName }</text>
+          <text x='64' y='56'>{ prevMonthName }</text>
         </g>
       </g>
 
-      <line className="calendar-perforate" x1='32' x2='992' y1='64' y2='68' />
+      <line className="calendar-perforate" x1='4' x2='124' y1='8' y2='8.5' />
     </svg>
   )
 }

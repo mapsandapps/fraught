@@ -5,18 +5,18 @@
     opacity: 1;
   }
   10% {
-    transform: rotate(9deg) translateY(20px);
+    transform: rotate(9deg) translateY(2.5px);
     opacity: 1;
   }
   35% {
     opacity: 1;
   }
   70% {
-    transform: rotate(-10deg) translateY(200px);
+    transform: rotate(-10deg) translateY(32px);
     opacity: 1;
   }
   100% {
-    transform: rotate(0deg) translateY(400px);
+    transform: rotate(0deg) translateY(64px);
     opacity: 0;
   }
 }
@@ -32,29 +32,29 @@
 }
 
 .page rect {
-  width: 960px;
-  height: 704px;
-  stroke: #213547;
+  width: 120px;
+  height: 88px;
+  stroke: #DEDEDE;
   fill: #ffffff;
 }
 
 .page text {
   font-family: Inter, Arial;
-  font-size: 128px;
+  font-size: 16px;
   fill: #213547;
   text-anchor: middle;
 }
 .calendar-bar {
-  width: 1024px;
-  height: 10px;
+  width: 128px;
+  height: 1.5px;
   fill: #213547;
 }
 
 .calendar-perforate {
-  width: 960px;
-  height: 4px;
+  width: 120px;
+  height: 0.5px;
   stroke: #213547;
-  stroke-width: 4px;
-  stroke-dasharray: 64 64;
+  stroke-width: 0.5px;
+  stroke-dasharray: 8 8;
   fill: transparent;
 }

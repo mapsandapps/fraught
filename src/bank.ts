@@ -55,7 +55,7 @@ export const expectations: Expectation[] = [
         stat: Stat.belonging,
         direction: Direction.positive
       },{
-        text: 'You felt like your presence wasn\'t valued.',
+        text: 'Even though you helped make the event better, you felt like your presence wasn\'t valued.',
         stat: Stat.belonging,
         direction: Direction.negative
       }
@@ -98,11 +98,11 @@ export const expectations: Expectation[] = [
     text: 'You don\'t feel welcome because you were ousted as an organizer of this event.',
     occurrences: [
       {
-        text: 'You\'re proud of yourself for going anyway.',
+        text: 'Even though you felt uncomfortable given the history of the situation, you\'re proud of yourself for going to the event anyway.',
         stat: Stat.exclusion,
         direction: Direction.neutral
       },{
-        text: 'You felt grumpy the whole event and didn\'t really enjoy it.',
+        text: 'Because of previously being ousted, you felt grumpy the whole event and didn\'t really enjoy it.',
         stat: Stat.exclusion,
         direction: Direction.positive
       }
@@ -111,11 +111,11 @@ export const expectations: Expectation[] = [
     text: 'Probably not very many people will be there.',
     occurrences: [
       {
-        text: 'You had to step up and take on a lot of responsibility that you didn\'t really have the energy for.',
+        text: 'Not many people were there. You had to step up and take on a lot of responsibility that you didn\'t really have the energy for.',
         stat: Stat.belonging,
         direction: Direction.neutral
       },{
-        text: 'You were able to step up and take a lot of responsibility, and it made you feel good.',
+        text: 'Not many people were there. You were able to step up and take a lot of responsibility, and it made you feel good.',
         stat: Stat.belonging,
         direction: Direction.positive
       }
@@ -133,11 +133,11 @@ export const expectations: Expectation[] = [
     text: 'You think someone you haven\'t seen in a while will be there, and you\'ve been missing them.',
     occurrences: [
       {
-        text: 'They didn\'t show up.',
+        text: 'The person you haven\'t seen in a while didn\'t show up.',
         stat: Stat.belonging,
         direction: Direction.negative
       },{
-        text: 'Your friend was there, and you had a great time chatting with them!',
+        text: 'The friend you hadn\'t seen in a while was there, and you had a great time chatting with them!',
         stat: Stat.belonging,
         direction: Direction.positive
       }
@@ -150,7 +150,7 @@ export const expectations: Expectation[] = [
         stat: Stat.exclusion,
         direction: Direction.positive
       },{
-        text: 'You felt really uneasy and on edge the whole time.',
+        text: 'None of your allies were there, and you felt really uneasy and on edge the whole time.',
         stat: Stat.exclusion,
         direction: Direction.positive
       }
@@ -176,7 +176,7 @@ export const expectations: Expectation[] = [
         stat: Stat.belonging,
         direction: Direction.positive
       },{
-        text: 'No newcomers arrived.',
+        text: 'You had hoped to help out some newcomers, but none were there.',
         stat: Stat.belonging,
         direction: Direction.negative
       }
@@ -198,7 +198,7 @@ export const expectations: Expectation[] = [
     text: 'Your friends aren\'t going, and you\'re worried that you\'ll look unsupportive of them if you go.',
     occurrences: [
       {
-        text: 'You felt really grumpy all night because of this.',
+        text: 'You felt really grumpy all night because your friends weren\'t there.',
         stat: Stat.belonging,
         direction: Direction.negative
       }
@@ -207,7 +207,7 @@ export const expectations: Expectation[] = [
     text: 'People are complaining about how the community is fracturing.',
     occurrences: [
       {
-        text: 'Me going at least means that I\'m not part of the problem.',
+        text: 'People have been complaining about how the community is fracturing, but me going at least means that I\'m not part of the problem.',
         stat: Stat.exclusion,
         direction: Direction.neutral
       },{
@@ -220,7 +220,7 @@ export const expectations: Expectation[] = [
     text: '"If I go, I\'ll get to participate in the hobby that I love!"',
     occurrences: [
       {
-        text: 'You went and had a great time!',
+        text: 'You went and overall had a great time!',
         stat: Stat.belonging,
         direction: Direction.neutral
       }

@@ -1,6 +1,6 @@
 @font-face {
   font-family: Inter;
-  /* in public dir */
+  /* in public dir here, but on build gets put in ./assets (and this path gets converted automatically) */
   src: url('Inter-VariableFont_opsz\,wght.ttf');
 }
 

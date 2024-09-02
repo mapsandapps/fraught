@@ -1,3 +1,7 @@
+.month {
+  text-align: center;
+}
+
 @keyframes tear {
   /* modified from https://www.reddit.com/r/svg/comments/1e3qehg/svg_animation_calendar_like/ */
   0% {

@@ -3,14 +3,16 @@ import { DEFAULT_TEXT_ANIMATION_DELAY } from "../helpers";
 
 interface AnimatedTextWithButtonsProps {
   children?: React.ReactNode
-  texts: string[],
+  texts: string[]
+  extraDelay?: number // number of extra delay periods
+  hasInnerList?: boolean
 }
 
 export default function AnimatedTextWithButtons(props: AnimatedTextWithButtonsProps) {
-  const { children, texts } = props;
+  const { children, extraDelay, hasInnerList, texts } = props;
   const [buttonsShown, setButtonsShown] = useState(false)
 
-  const animationDuration = texts.length * DEFAULT_TEXT_ANIMATION_DELAY
+  const animationDuration = (texts.length + (extraDelay || 0)) * DEFAULT_TEXT_ANIMATION_DELAY
 
   setTimeout(() => {
     setButtonsShown(true)
@@ -20,6 +22,19 @@ export default function AnimatedTextWithButtons(props: AnimatedTextWithButtonsPr
     <>
       {texts.map((text, i) => {
         const animationDelay = `${i * DEFAULT_TEXT_ANIMATION_DELAY}ms`
+
+
+        if (hasInnerList && (i > 0 && i < texts.length - 1)) {
+          return (
+            <li 
+              key={`text-${i}`} 
+              className="fade-in-text" 
+              style={{ animationDelay }}
+            >
+              { text }
+            </li>
+          )
+        }
 
         return (
           <p 

@@ -3,6 +3,7 @@ import { DEFAULT_TEXT_ANIMATION_DELAY, getMonth } from "../helpers";
 import { Choice, Event, EventHistoryLog, GameState } from "../types";
 import Meters from "./Meters";
 import Month from "./Month";
+import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
 
 interface PreEventProps {
   eventHistoryLog: EventHistoryLog;
@@ -35,32 +36,11 @@ export default function PreEvent(props: PreEventProps) {
   return (
     <div className="card">
       <Month gameState={GameState.preEvent} monthNumber={eventHistoryLog.length} />
-      {texts.map((text, i) => {
-        // +1 is to leave time for the calendar animation
-        const animationDelay = `${(i + 1) * DEFAULT_TEXT_ANIMATION_DELAY}ms`
-
-        if (i > 0 && i < texts.length - 1) {
-          return (
-            <li 
-              key={`text-${i}`} 
-              className="fade-in-text" 
-              style={{ animationDelay }}
-            >
-              { text }
-            </li>
-          )
-        }
-
-        return (
-          <p 
-            key={`text-${i}`} 
-            className="fade-in-text" 
-            style={{ animationDelay }}
-          >
-            { text }
-          </p>
-        )
-      })}
+      <AnimatedTextWithButtons
+        texts={texts}
+        hasInnerList
+        extraDelay={1}
+      />
       {buttonsShown && (
         <>
           <button onClick={() => onExit(Choice.event)}>Go to the event</button>

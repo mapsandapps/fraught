@@ -11,7 +11,7 @@ import Win from "./components/Win";
 
 function App() {
   const INIT_EVENT: EventHistory = {
-    choice: Choice.event,
+    choice: Choice.init,
     finalBelonging: INIT_BELONGING,
     finalExclusion: INIT_EXCLUSION
   }
@@ -28,9 +28,10 @@ function App() {
   };
 
   const exitEvent = (eventHistory: EventHistory) => {
-    setEventHistoryLog([...eventHistoryLog, eventHistory])
+    const log = [...eventHistoryLog, eventHistory]
+    setEventHistoryLog(log)
 
-    const winLoss = checkForWinOrLoss(eventHistory)
+    const winLoss = checkForWinOrLoss(log)
 
     setWinLossCondition(winLoss)
     if (winLoss) {

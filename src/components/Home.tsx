@@ -1,7 +1,8 @@
 import { Choice, Direction, Event, EventHistory, EventHistoryLog, Stat } from "../types";
-import { HOME_BELONGING, HOME_EXCLUSION } from "../helpers";
+import { HOME_BELONGING, HOME_EXCLUSION, getMonth } from "../helpers";
 import Meters from "./Meters";
 import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
+import Month from "./Month";
 
 interface HomeProps {
   hobby: string;
@@ -28,7 +29,7 @@ export default function Home(props: HomeProps) {
   };
 
   const texts = [
-    'You spend a cozy night at home.',
+    `You spend a cozy night at home, instead of attending the ${getMonth(eventHistoryLog.length)} event.`,
     `Your belonging increases by ${deltaBelonging},`,
     `but your exclusion also increases by ${deltaExclusion}.`,
     `You miss your ${hobby.toLowerCase()} friends.`
@@ -57,6 +58,7 @@ export default function Home(props: HomeProps) {
 
   return (
     <div className="card">
+      <Month monthNumber={eventHistoryLog.length} />
       <AnimatedTextWithButtons texts={texts}>
         <button onClick={() => onExit(eventHistory)}>Continue</button>
       </AnimatedTextWithButtons>

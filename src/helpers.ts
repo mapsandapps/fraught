@@ -1,13 +1,13 @@
 import { expectations } from "./bank";
-import { Direction, Event, EventHistory, Occurrence, Stat, WinLossCondition } from "./types";
-import { filter, flatten, inRange, random, sampleSize, sum } from 'lodash';
+import { Choice, Direction, Event, EventHistoryLog, Occurrence, Stat, WinLossCondition } from "./types";
+import { filter, flatten, inRange, last, random, sampleSize, sum } from 'lodash';
 
 export const DEFAULT_HOBBY = "Line dancing";
 // TODO: set back to ~2000
 export const DEFAULT_TEXT_ANIMATION_DELAY = 500; // ms
-export const INIT_BELONGING = 90;
+export const INIT_BELONGING = 30;
 export const MAX_BELONGING = 100;
-export const INIT_EXCLUSION = 90;
+export const INIT_EXCLUSION = 30;
 export const MAX_EXCLUSION = 100;
 export const HOME_BELONGING = 5;
 export const HOME_EXCLUSION = 5;
@@ -20,6 +20,13 @@ const SAMPLE_OF_OCCURRENCES = [1, 1, 1, 1, 2]
 
 const getNumberOfExpectations = () => SAMPLE_OF_EXPECTATIONS[random(0, SAMPLE_OF_EXPECTATIONS.length - 1)]
 const getNumberOfOccurrences = () => SAMPLE_OF_OCCURRENCES[random(0, SAMPLE_OF_OCCURRENCES.length - 1)]
+
+export const getMonth = (monthNumber: number): string => {
+  // 1-indexed
+  const months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+  return months[monthNumber]
+}
 
 export const getEvent = (): Event => {
   const event: Event = []
@@ -71,10 +78,16 @@ export const getDeltaStat = (event: Event, stat: Stat): number => {
   return sum(valuesOfStat)
 }
 
-export const checkForWinOrLoss = (eventHistory: EventHistory): WinLossCondition | null => {
+export const checkForWinOrLoss = (eventHistoryLog: EventHistoryLog): WinLossCondition | null => {
   // return WinLossCondition.bothMin // for debug purposes
 
-  const { finalBelonging, finalExclusion } = eventHistory
+  if (eventHistoryLog.length > 12) return WinLossCondition.yearEnd
+
+  const lastEvent = last(eventHistoryLog)
+
+  if (!lastEvent) return null
+
+  const { finalBelonging, finalExclusion } = lastEvent
   if (inRange(finalBelonging, 0, 100) && inRange(finalExclusion, 0, 100)) return null
 
   if (finalBelonging <= 0 && finalExclusion <= 0) return WinLossCondition.bothMin
@@ -94,4 +107,12 @@ export const checkForWinOrLoss = (eventHistory: EventHistory): WinLossCondition 
 
   console.warn('Unexpected condition occurred')
   return null
+}
+
+export const countEventsAttended = (eventHistoryLog: EventHistoryLog): number => {
+  const eventsAttended = filter(eventHistoryLog, (event) => {
+    return event.choice === Choice.event
+  })
+
+  return eventsAttended.length
 }

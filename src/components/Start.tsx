@@ -13,9 +13,10 @@ export default function Start(props: StartProps) {
   return (
     <div className="card">
       <h1>Fraught</h1>
+      <p>You've made it a habit to try out a new hobby each new year.</p>
       <p>
         <label>
-          What new hobby would you like to start?
+          What hobby would you like to start?
           <input placeholder="Line dancing" type="text" onChange={(e) => setHobby(e.target.value || DEFAULT_HOBBY)} />
         </label>
       </p>

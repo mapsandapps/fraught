@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DEFAULT_TEXT_ANIMATION_DELAY } from "../helpers";
+import { DEFAULT_TEXT_ANIMATION_DELAY, getMonth } from "../helpers";
 import { Choice, Event, EventHistoryLog } from "../types";
 import Meters from "./Meters";
 
@@ -15,7 +15,7 @@ export default function PreEvent(props: PreEventProps) {
   const [buttonsShown, setButtonsShown] = useState(false)
 
   const texts = [
-    nextEvent.length > 1 ? 'A number of thoughts go through your head about the next upcoming event:' : 'You contemplate the next upcoming event:'
+    nextEvent.length > 1 ? `A number of thoughts go through your head about the upcoming event in ${getMonth(eventHistoryLog.length)}:` : `You contemplate the upcoming event in ${getMonth(eventHistoryLog.length)}:`
   ]
 
   nextEvent.map((expectation) => {

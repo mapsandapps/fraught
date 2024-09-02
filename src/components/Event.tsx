@@ -1,7 +1,8 @@
-import { DEFAULT_TEXT_ANIMATION_DELAY, INIT_BELONGING, INIT_EXCLUSION, getDeltaStat, getStatChangeText } from "../helpers";
+import { DEFAULT_TEXT_ANIMATION_DELAY, INIT_BELONGING, INIT_EXCLUSION, countEventsAttended, getDeltaStat, getMonth, getStatChangeText } from "../helpers";
 import { Choice, Event as EventType, EventHistory, EventHistoryLog, Stat } from "../types";
 import Meters from "./Meters";
 import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
+import Month from "./Month";
 
 interface EventProps {
   hobby: string;
@@ -37,8 +38,11 @@ export default function Event(props: EventProps) {
     finalExclusion,
   };
 
+  const numberOfEventsAttended = countEventsAttended(eventHistoryLog) + 1
+
+  // FIXME: it should only count events with choice = Choice.event
   const texts = [
-    `You attended your ${eventHistoryLog.length + 1}${suffixes.get(pluralRule.select(eventHistoryLog.length + 1))} ${hobby.toLowerCase()} event.`
+    `You attended your ${numberOfEventsAttended}${suffixes.get(pluralRule.select(numberOfEventsAttended))} ${hobby.toLowerCase()} event.`
   ]
 
   nextEvent.map(expectation => {
@@ -57,6 +61,7 @@ export default function Event(props: EventProps) {
   return (
     <>
       <div className="card">
+        <Month monthNumber={eventHistoryLog.length} />
         <AnimatedTextWithButtons texts={texts}>
           <button onClick={() => onExit(eventHistory)}>Continue</button>
         </AnimatedTextWithButtons>

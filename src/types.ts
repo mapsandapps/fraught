@@ -28,6 +28,7 @@ export enum Stat {
 }
 
 export enum Choice {
+  init = 'init',
   event = 'event',
   home = 'home',
 }

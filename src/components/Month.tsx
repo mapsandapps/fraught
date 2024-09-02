@@ -10,8 +10,8 @@ interface MonthProps {
 export default function Month(props: MonthProps) {
   const { gameState, monthNumber } = props
 
-  const currentMonthName = getMonth(monthNumber, true)
-  const prevMonthName = getMonth(monthNumber - 1, true)
+  const currentMonthName = getMonth(monthNumber)
+  const prevMonthName = getMonth(monthNumber - 1)
 
   console.log(getMonth(monthNumber))
 
@@ -22,23 +22,22 @@ export default function Month(props: MonthProps) {
   }
 
   return (
-    // https://www.reddit.com/r/svg/comments/1e3qehg/svg_animation_calendar_like/
-    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='64' height='64'>
-      {/* calendar shape */}
-      <rect x='64' y='96' width='384' height='10' rx='32' ry='32' fill='#213547'/>
+    // modified from https://www.reddit.com/r/svg/comments/1e3qehg/svg_animation_calendar_like/
+    <svg className="month-svg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 768' width='128' height='96'>
+      <rect className="calendar-bar" x='0' y='0' />
       
-      {/* pages with numbers */}
       <g className='pages'>
         <g className='page new-month'>
-          <rect x='96' y='128' />
-          <text x='256' y='320'>{ currentMonthName }</text>
+          <rect x='32' y='64' />
+          <text x='512' y='448'>{ currentMonthName }</text>
         </g>
         <g className='page old-month'>
-          <rect x='96' y='128' />
-          <text x='256' y='320'>{ prevMonthName }</text>
-          <g className='tear'></g>
+          <rect x='32' y='64' />
+          <text x='512' y='448'>{ prevMonthName }</text>
         </g>
       </g>
+
+      <line className="calendar-perforate" x1='32' x2='992' y1='64' y2='68' />
     </svg>
   )
 }

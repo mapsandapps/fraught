@@ -44,10 +44,10 @@
   fill: #213547;
   text-anchor: middle;
 }
+
 .calendar-bar {
-  width: 128px;
-  height: 1.5px;
-  fill: #213547;
+  stroke: #213547;
+  stroke-width: 1.5px;
 }
 
 .calendar-perforate {

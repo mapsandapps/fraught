@@ -24,7 +24,7 @@ export default function Month(props: MonthProps) {
   return (
     // modified from https://www.reddit.com/r/svg/comments/1e3qehg/svg_animation_calendar_like/
     <svg className="month-svg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 96' width='128' height='96'>
-      <rect className="calendar-bar" x='0' y='0' />
+      <line className="calendar-bar" x1='0' x2='128' y1='0' y2='0' />
       
       <g className='pages'>
         <g className='page new-month'>
@@ -37,7 +37,7 @@ export default function Month(props: MonthProps) {
         </g>
       </g>
 
-      <line className="calendar-perforate" x1='4' x2='124' y1='8' y2='8.5' />
+      <line className="calendar-perforate" x1='4' x2='124' y1='8' y2='8' />
     </svg>
   )
 }

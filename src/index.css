@@ -1,6 +1,7 @@
 @font-face {
   font-family: Inter;
-  src: url('Inter-VariableFont_opsz\,wght.ttf');
+  /* in public dir */
+  src: url('./assets/Inter-VariableFont_opsz\,wght.ttf');
 }
 
 :root {

@@ -1,8 +1,9 @@
-import { Choice, Direction, Event, EventHistory, EventHistoryLog, Stat } from "../types";
+import { Choice, Direction, Event, EventHistory, EventHistoryLog, GameState, Stat } from "../types";
 import { HOME_BELONGING, HOME_EXCLUSION, getMonth } from "../helpers";
 import Meters from "./Meters";
 import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
 import Month from "./Month";
+import { getHomeText } from "../bank";
 
 interface HomeProps {
   hobby: string;
@@ -19,8 +20,8 @@ export default function Home(props: HomeProps) {
   const deltaBelonging = HOME_BELONGING;
   const deltaExclusion = HOME_EXCLUSION;
 
-  const finalBelonging = prevBelonging + deltaBelonging;
-  const finalExclusion = prevExclusion + deltaExclusion;
+  const finalBelonging = prevBelonging - deltaBelonging;
+  const finalExclusion = prevExclusion - deltaExclusion;
 
   const eventHistory = {
     choice: Choice.home,
@@ -30,9 +31,9 @@ export default function Home(props: HomeProps) {
 
   const texts = [
     `You spend a cozy night at home, instead of attending the ${getMonth(eventHistoryLog.length)} event.`,
-    `Your belonging increases by ${deltaBelonging},`,
-    `but your exclusion also increases by ${deltaExclusion}.`,
-    `You miss your ${hobby.toLowerCase()} friends.`
+    `Your belonging decreases by ${deltaBelonging},`,
+    `but your exclusion also decreases by ${deltaExclusion}.`,
+    getHomeText(hobby)
   ]
 
   const event: Event = [
@@ -42,13 +43,13 @@ export default function Home(props: HomeProps) {
         {
           text: '',
           stat: Stat.belonging,
-          direction: Direction.positive,
+          direction: Direction.negative,
           value: deltaBelonging,
           timing: 1000
         },{
           text: '',
           stat: Stat.exclusion,
-          direction: Direction.positive,
+          direction: Direction.negative,
           value: deltaExclusion,
           timing: 2000
         }
@@ -58,7 +59,7 @@ export default function Home(props: HomeProps) {
 
   return (
     <div className="card">
-      <Month monthNumber={eventHistoryLog.length} />
+      <Month gameState={GameState.home} monthNumber={eventHistoryLog.length} />
       <AnimatedTextWithButtons texts={texts}>
         <button onClick={() => onExit(eventHistory)}>Continue</button>
       </AnimatedTextWithButtons>

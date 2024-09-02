@@ -45,9 +45,6 @@ export default function Win(props: WinProps) {
   return (
     <div className="card">
       <h1>Fraught</h1>
-      <p className="debug">
-        { winLossCondition }, { hobby }
-      </p>
       <AnimatedTextWithButtons texts={texts}>
         <button onClick={() => window.location.reload()}>Start a new game</button>
       </AnimatedTextWithButtons>

@@ -1,6 +1,6 @@
 import { expectations, firstEventBank } from "./bank";
 import { Choice, Direction, Event, EventHistoryLog, Occurrence, Stat, WinLossCondition } from "./types";
-import { filter, flatten, inRange, last, random, sampleSize, sum } from 'lodash';
+import { filter, flatten, inRange, last, random, sample, sampleSize, sum } from 'lodash';
 
 export const DEFAULT_HOBBY = "Line dancing";
 // TODO: set back to ~2000
@@ -17,13 +17,16 @@ export const MAX_EXCLUSION_DELTA = 10;
 // pull a random one of these to find out how many expectations you have about an event
 const SAMPLE_OF_EXPECTATIONS = [1, 1, 2, 2, 2, 2, 2, 2, 3, 3]
 const SAMPLE_OF_OCCURRENCES = [1, 1, 1, 1, 2]
+const SAMPLE_OF_OCCURRENCES_FIRST_EVENT = [1, 2, 2, 3, 3]
 
 const getNumberOfExpectations = () => SAMPLE_OF_EXPECTATIONS[random(0, SAMPLE_OF_EXPECTATIONS.length - 1)]
-const getNumberOfOccurrences = () => SAMPLE_OF_OCCURRENCES[random(0, SAMPLE_OF_OCCURRENCES.length - 1)]
+const getNumberOfOccurrences = (isFirstEvent?: boolean) => {
+  return isFirstEvent ? sample(SAMPLE_OF_OCCURRENCES_FIRST_EVENT) : sample(SAMPLE_OF_OCCURRENCES)
+}
 
-export const getMonth = (monthNumber: number): string => {
+export const getMonth = (monthNumber: number, isShort?: boolean): string => {
   // 1-indexed
-  const months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  const months = isShort ? ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] : ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
   return months[monthNumber]
 }
@@ -38,7 +41,7 @@ const giveOccurrencesValues = (occurrences: Occurrence[]): Occurrence[] => {
 }
 
 export const getFirstEvent = (): Event => {
-  const numberOfOccurrences = getNumberOfOccurrences()
+  const numberOfOccurrences = getNumberOfOccurrences(true)
 
   const occurrences = sampleSize(firstEventBank, numberOfOccurrences)
 
@@ -98,7 +101,7 @@ export const getDeltaStat = (event: Event, stat: Stat): number => {
 }
 
 export const checkForWinOrLoss = (eventHistoryLog: EventHistoryLog): WinLossCondition | null => {
-  // return WinLossCondition.bothMin // for debug purposes
+  // return WinLossCondition.belongingMax // for debug purposes
 
   if (eventHistoryLog.length > 12) return WinLossCondition.yearEnd
 

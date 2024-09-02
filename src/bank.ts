@@ -1,3 +1,4 @@
+import { sample } from "lodash";
 import { Direction, Expectation, Occurrence, Stat } from "./types";
 
 export const firstEventBank: Occurrence[] = [
@@ -226,3 +227,15 @@ export const expectations: Expectation[] = [
     ]
   }
 ]
+
+export const getHomeText = (hobby: string): string => {
+  const hobbyLowerCase = hobby.toLowerCase()
+
+  const homeTextBank = [
+    `You miss your ${hobbyLowerCase} friends.`,
+    `You wonder how your ${hobbyLowerCase} friends feel.`,
+    `You miss your ${hobbyLowerCase} friends, but you aren't sure if they're missing you or not. You haven't heard anything from them.`
+  ]
+
+  return sample(homeTextBank)!
+}

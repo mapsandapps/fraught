@@ -3,8 +3,7 @@ import { Choice, Direction, Event, EventHistoryLog, Occurrence, Stat, WinLossCon
 import { filter, flatten, inRange, last, random, sample, sampleSize, sum } from 'lodash';
 
 export const DEFAULT_HOBBY = "Line dancing";
-// TODO: set back to ~2000
-export const DEFAULT_TEXT_ANIMATION_DELAY = 500; // ms
+export const DEFAULT_TEXT_ANIMATION_DELAY = 2000; // ms
 export const INIT_BELONGING = 30;
 export const MAX_BELONGING = 100;
 export const INIT_EXCLUSION = 30;
@@ -13,6 +12,8 @@ export const HOME_BELONGING = 5;
 export const HOME_EXCLUSION = 5;
 export const MAX_BELONGING_DELTA = 10;
 export const MAX_EXCLUSION_DELTA = 10;
+// for tuning, have both meters increase more than they decrease
+export const POSITIVE_MULTIPLIER = 2;
 
 // pull a random one of these to find out how many expectations you have about an event
 const SAMPLE_OF_EXPECTATIONS = [1, 1, 2, 2, 2, 2, 2, 2, 3, 3]
@@ -34,7 +35,16 @@ export const getMonth = (monthNumber: number, isShort?: boolean): string => {
 const giveOccurrencesValues = (occurrences: Occurrence[]): Occurrence[] => {
   occurrences.map(occurrence => {
     const { direction, stat } = occurrence;
-    occurrence.value = direction === Direction.neutral ? 0 : stat === Stat.belonging ? random(1, MAX_BELONGING_DELTA) : random(1, MAX_EXCLUSION_DELTA);
+    switch (direction) {
+      case Direction.neutral:
+        occurrence.value = 0
+        break
+      case Direction.positive:
+        occurrence.value = stat === Stat.belonging ? random(1, MAX_BELONGING_DELTA * POSITIVE_MULTIPLIER) : random(1, MAX_EXCLUSION_DELTA * POSITIVE_MULTIPLIER)
+        break
+      case Direction.negative:
+        occurrence.value = stat === Stat.belonging ? random(1, MAX_BELONGING_DELTA) : random(1, MAX_EXCLUSION_DELTA)
+    }
   })
 
   return occurrences

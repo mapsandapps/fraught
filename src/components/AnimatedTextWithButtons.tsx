@@ -4,7 +4,7 @@ import { DEFAULT_TEXT_ANIMATION_DELAY } from "../helpers";
 interface AnimatedTextWithButtonsProps {
   children?: React.ReactNode
   texts: string[]
-  extraDelay?: number // number of extra delay periods
+  extraDelay?: number // number of extra delay periods — NOTE: if meters also animate, they will also need to be adjusted
   hasInnerList?: boolean
 }
 

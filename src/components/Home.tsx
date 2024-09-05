@@ -1,5 +1,5 @@
 import { Choice, Direction, Event, EventHistory, EventHistoryLog, GameState, Stat } from "../types";
-import { HOME_BELONGING, HOME_EXCLUSION, getMonth } from "../helpers";
+import { DEFAULT_TEXT_ANIMATION_DELAY, HOME_BELONGING, HOME_EXCLUSION, getMonth } from "../helpers";
 import Meters from "./Meters";
 import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
 import Month from "./Month";
@@ -45,13 +45,13 @@ export default function Home(props: HomeProps) {
           stat: Stat.belonging,
           direction: Direction.negative,
           value: deltaBelonging,
-          timing: 1000
+          timing: DEFAULT_TEXT_ANIMATION_DELAY * 1
         },{
           text: '',
           stat: Stat.exclusion,
           direction: Direction.negative,
           value: deltaExclusion,
-          timing: 2000
+          timing: DEFAULT_TEXT_ANIMATION_DELAY * 2
         }
       ]
     }

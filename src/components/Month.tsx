@@ -13,8 +13,6 @@ export default function Month(props: MonthProps) {
   const currentMonthName = getMonth(monthNumber)
   const prevMonthName = getMonth(monthNumber - 1)
 
-  console.log(getMonth(monthNumber))
-
   if (gameState !== GameState.preEvent) {
     return (
       <h1>{getMonth(monthNumber)}</h1>

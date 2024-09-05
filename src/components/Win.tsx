@@ -13,6 +13,8 @@ export default function Win(props: WinProps) {
   const { eventHistoryLog, hobby, winLossCondition } = props
   const [isYearReviewVisible, setYearReviewVisible] = useState(false)
 
+  const isWin = winLossCondition === WinLossCondition.belongingMax
+
   const texts = []
 
   const hobbyLowerCase = hobby.toLowerCase()
@@ -50,9 +52,10 @@ export default function Win(props: WinProps) {
 
   return (
     <div className="card">
-      <h1>Fraught</h1>
+      <h1 style={{ textDecoration: isWin ? 'line-through' : 'none' }}>Fraught</h1>
       <AnimatedTextWithButtons texts={texts}>
         <button onClick={() => window.location.reload()}>Start a new game</button>
+        <button onClick={() => setYearReviewVisible(!isYearReviewVisible)}>{isYearReviewVisible ? 'Hide year recap' : 'View year recap'}</button>
       </AnimatedTextWithButtons>
       <br /><br />
       {isYearReviewVisible && (
@@ -85,8 +88,6 @@ export default function Win(props: WinProps) {
           />
         </svg>
       )}
-      {isYearReviewVisible && (<><br /><br /></>)}
-      <button onClick={() => setYearReviewVisible(!isYearReviewVisible)}>{isYearReviewVisible ? 'Hide year recap' : 'View year recap'}</button>
     </div>
   )
 }

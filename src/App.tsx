@@ -31,7 +31,7 @@ function App() {
     const log = [...eventHistoryLog, eventHistory]
     setEventHistoryLog(log)
 
-    const winLoss = checkForWinOrLoss(log)
+    const winLoss = WinLossCondition.belongingMax
 
     setWinLossCondition(winLoss)
     if (winLoss) {

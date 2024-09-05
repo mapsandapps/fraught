@@ -59,32 +59,51 @@ export default function Win(props: WinProps) {
       </AnimatedTextWithButtons>
       <br /><br />
       {isYearReviewVisible && (
-        <svg viewBox={`0 0 ${meterFullWidth * 2} ${eventHistoryLog.length * 10}`}>
+        <svg viewBox={`0 0 ${meterFullWidth * 2} ${(eventHistoryLog.length + 1) * 10}`} style={{ backgroundColor: '#DEDEDE' }}>
+          <text 
+            x={meterFullWidth - 2} 
+            y={7} 
+            fontSize='0.5em' 
+            textAnchor='end'
+          >
+            Exclusion
+          </text>
+          <text 
+            x={meterFullWidth + 2} 
+            y={7} 
+            fontSize='0.5em' 
+            textAnchor='start'
+          >
+            Belonging
+          </text>
           {eventHistoryLog.map((logItem, i) => {
+            const y = (i + 1) * 10
             return (
               <g>
                 <rect 
                   className="filled exclusion" 
                   x={meterFullWidth - logItem.finalExclusion}
-                  y={i * 10}
+                  y={y}
                   width={logItem.finalExclusion}
                 />
                 <rect 
                   className="filled belonging" 
                   x={meterFullWidth}
-                  y={i * 10}
+                  y={y}
                   width={logItem.finalBelonging}
                 />
-                <text y={i * 10 + 7} fontSize='0.5em'>{getMonth(i, true) || '—'}</text>
+                <text y={y + 7} fontSize='0.5em'>{getMonth(i, true) || '—'}</text>
               </g>
             )
           })}
           <line
-            x1={meterFullWidth - 2}
-            x2={meterFullWidth + 2}
+            x1={meterFullWidth}
+            x2={meterFullWidth}
             y1={0}
-            y2={eventHistoryLog.length * 10} 
-            fill="black"
+            y2={(eventHistoryLog.length + 1) * 10} 
+            stroke="gray"
+            strokeWidth={1}
+            strokeDasharray='3.33 3.33'
           />
         </svg>
       )}

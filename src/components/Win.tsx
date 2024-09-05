@@ -1,13 +1,17 @@
-import { WinLossCondition } from '../types';
+import { useState } from 'react';
+import { EventHistoryLog, WinLossCondition } from '../types';
 import AnimatedTextWithButtons from './AnimatedTextWithButtons';
+import { MAX_BELONGING, getMonth } from '../helpers';
 
 interface WinProps {
+  eventHistoryLog: EventHistoryLog;
   hobby: string;
   winLossCondition: WinLossCondition;
 }
 
 export default function Win(props: WinProps) {
-  const { hobby, winLossCondition } = props
+  const { eventHistoryLog, hobby, winLossCondition } = props
+  const [isYearReviewVisible, setYearReviewVisible] = useState(false)
 
   const texts = []
 
@@ -42,12 +46,47 @@ export default function Win(props: WinProps) {
       console.warn('Unexpected condition')
   }
 
+  const meterFullWidth = MAX_BELONGING
+
   return (
     <div className="card">
       <h1>Fraught</h1>
       <AnimatedTextWithButtons texts={texts}>
         <button onClick={() => window.location.reload()}>Start a new game</button>
       </AnimatedTextWithButtons>
+      <br /><br />
+      {isYearReviewVisible && (
+        <svg viewBox={`0 0 ${meterFullWidth * 2} ${eventHistoryLog.length * 10}`}>
+          {eventHistoryLog.map((logItem, i) => {
+            return (
+              <g>
+                <rect 
+                  className="filled exclusion" 
+                  x={meterFullWidth - logItem.finalExclusion}
+                  y={i * 10}
+                  width={logItem.finalExclusion}
+                />
+                <rect 
+                  className="filled belonging" 
+                  x={meterFullWidth}
+                  y={i * 10}
+                  width={logItem.finalBelonging}
+                />
+                <text y={i * 10 + 7} fontSize='0.5em'>{getMonth(i, true) || '—'}</text>
+              </g>
+            )
+          })}
+          <line
+            x1={meterFullWidth - 2}
+            x2={meterFullWidth + 2}
+            y1={0}
+            y2={eventHistoryLog.length * 10} 
+            fill="black"
+          />
+        </svg>
+      )}
+      {isYearReviewVisible && (<><br /><br /></>)}
+      <button onClick={() => setYearReviewVisible(!isYearReviewVisible)}>{isYearReviewVisible ? 'Hide year recap' : 'View year recap'}</button>
     </div>
   )
 }

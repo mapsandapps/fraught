@@ -31,8 +31,8 @@ export default function Home(props: HomeProps) {
 
   const texts = [
     `You spend a cozy night at home, instead of attending the ${getMonth(eventHistoryLog.length)} event.`,
-    `Your belonging decreases by ${deltaBelonging},`,
-    `but your exclusion also decreases by ${deltaExclusion}.`,
+    `Your exclusion decreases by ${deltaExclusion},`,
+    `but your belonging also decreases by ${deltaBelonging}.`,
     getHomeText(hobby)
   ]
 
@@ -42,15 +42,15 @@ export default function Home(props: HomeProps) {
       occurrences: [
         {
           text: '',
-          stat: Stat.belonging,
-          direction: Direction.negative,
-          value: deltaBelonging,
-          timing: DEFAULT_TEXT_ANIMATION_DELAY * 1
-        },{
-          text: '',
           stat: Stat.exclusion,
           direction: Direction.negative,
           value: deltaExclusion,
+          timing: DEFAULT_TEXT_ANIMATION_DELAY * 1
+        },{
+          text: '',
+          stat: Stat.belonging,
+          direction: Direction.negative,
+          value: deltaBelonging,
           timing: DEFAULT_TEXT_ANIMATION_DELAY * 2
         }
       ]

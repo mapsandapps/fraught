@@ -31,7 +31,7 @@ export default function Win(props: WinProps) {
       break
     case WinLossCondition.exclusionMax:
       texts.push(`The ${hobbyLowerCase} hobby has felt pretty exclusionary. Over time, you've stopped attending events.`)
-      texts.push('Even though sometimes you felt like you belonged there, you also couldn\'t help but feel excluded. Maybe they just aren\'t right for you.')
+      texts.push('Even though sometimes you felt like you belonged there, you also couldn\'t help but feel excluded. Maybe this hobby just isn\'t right for you.')
       break
     case WinLossCondition.exclusionMin:
       texts.push(`You aren't always sure if you belong in the ${hobbyLowerCase} hobby, but at least you don't feel pushed away from it.`)

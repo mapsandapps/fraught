@@ -207,11 +207,11 @@ export const expectations: Expectation[] = [
     text: 'People are complaining about how the community is fracturing.',
     occurrences: [
       {
-        text: 'People have been complaining about how the community is fracturing, but me going at least means that I\'m not part of the problem.',
+        text: 'People have been complaining about how the community is fracturing, but you feel like you going at least means that you\'re not part of the problem.',
         stat: Stat.exclusion,
         direction: Direction.neutral
       },{
-        text: 'My friends didn\'t attend, and I\'m worried I\'m not supporting them.',
+        text: 'Your friends didn\'t attend, and you\'re worried you\'re not supporting them.',
         stat: Stat.belonging,
         direction: Direction.negative
       }
@@ -233,7 +233,7 @@ export const getHomeText = (hobby: string): string => {
 
   const homeTextBank = [
     `You miss your ${hobbyLowerCase} friends.`,
-    `You wonder how your ${hobbyLowerCase} friends feel.`,
+    `You wonder how your ${hobbyLowerCase} friends are doing.`,
     `You miss your ${hobbyLowerCase} friends, but you aren't sure if they're missing you or not. You haven't heard anything from them.`
   ]
 

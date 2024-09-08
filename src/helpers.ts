@@ -85,7 +85,7 @@ export const getEvent = (): Event => {
 export const getStatChangeText = (occurrence: Occurrence): string => {
   if (occurrence.direction === Direction.neutral) return ''
 
-  return `Your ${occurrence.stat} ${occurrence.direction === Direction.positive ? 'incresed' : 'decreased'} by ${occurrence.value}.`
+  return `Your ${occurrence.stat} ${occurrence.direction === Direction.positive ? 'increased' : 'decreased'} by ${occurrence.value}.`
 }
 
 export const getOccurrencesForEvent = (event: Event): Occurrence[] => {

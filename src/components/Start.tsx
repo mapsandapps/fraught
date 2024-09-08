@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { DEFAULT_HOBBY } from '../helpers';
+import { sample } from 'lodash';
+import { HOBBY_OPTIONS } from '../bank';
 
 interface StartProps {
   onExit: (hobby: string) => void;
@@ -8,7 +9,9 @@ interface StartProps {
 export default function Start(props: StartProps) {
   const { onExit } = props;
 
-  const [hobby, setHobby] = useState(DEFAULT_HOBBY);
+  const defaultHobby = sample(HOBBY_OPTIONS) as string
+
+  const [hobby, setHobby] = useState(defaultHobby);
 
   return (
     <div className="card">
@@ -17,7 +20,7 @@ export default function Start(props: StartProps) {
       <p>
         <label>
           What hobby would you like to start?
-          <input placeholder="Line dancing" type="text" onChange={(e) => setHobby(e.target.value || DEFAULT_HOBBY)} />
+          <input placeholder={defaultHobby} type="text" onChange={(e) => setHobby(e.target.value || defaultHobby)} />
         </label>
       </p>
       <button onClick={() => onExit(hobby)}>Continue</button>

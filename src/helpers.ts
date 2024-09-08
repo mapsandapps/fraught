@@ -2,7 +2,6 @@ import { expectations, firstEventBank } from "./bank";
 import { Choice, Direction, Event, EventHistoryLog, Occurrence, Stat, WinLossCondition } from "./types";
 import { filter, flatten, inRange, last, random, sample, sampleSize, sum } from 'lodash';
 
-export const DEFAULT_HOBBY = "Line dancing";
 export const DEFAULT_TEXT_ANIMATION_DELAY = 2000; // ms
 export const INIT_BELONGING = 30;
 export const MAX_BELONGING = 100;

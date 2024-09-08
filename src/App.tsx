@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { DEFAULT_HOBBY, INIT_BELONGING, INIT_EXCLUSION, checkForWinOrLoss, getEvent, getFirstEvent } from "./helpers";
+import { INIT_BELONGING, INIT_EXCLUSION, checkForWinOrLoss, getEvent, getFirstEvent } from "./helpers";
 import Event from "./components/Event";
 import Home from "./components/Home";
 import PreEvent from "./components/PreEvent";
@@ -16,7 +16,7 @@ function App() {
     finalExclusion: INIT_EXCLUSION
   }
 
-  const [hobby, setHobby] = useState<string>(DEFAULT_HOBBY);
+  const [hobby, setHobby] = useState<string>('');
   const [gameState, setGameState] = useState<GameState>(GameState.start);
   const [eventHistoryLog, setEventHistoryLog] = useState<EventHistoryLog>([INIT_EVENT]);
   const [nextEvent, setNextEvent] = useState<EventType>(getFirstEvent())

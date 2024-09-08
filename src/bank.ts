@@ -1,6 +1,17 @@
 import { sample } from "lodash";
 import { Direction, Expectation, Occurrence, Stat } from "./types";
 
+export const HOBBY_OPTIONS: string[] = [
+  'Rock climbing',
+  'Salsa dancing',
+  'Surfing',
+  'Origami',
+  'Foraging',
+  'Archery',
+  'Photography',
+  'Birding'
+]
+
 export const firstEventBank: Occurrence[] = [
   {
     text: 'You met a lot of folks and had a great time.',

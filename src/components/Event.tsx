@@ -41,7 +41,7 @@ export default function Event(props: EventProps) {
   const numberOfEventsAttended = countEventsAttended(eventHistoryLog) + 1
 
   const texts = [
-    `You attended your ${numberOfEventsAttended}${suffixes.get(pluralRule.select(numberOfEventsAttended))} ${hobby.toLowerCase()} event.`
+    `You attended your ${numberOfEventsAttended}${suffixes.get(pluralRule.select(numberOfEventsAttended))} ${hobby} event.`
   ]
 
   nextEvent.map(expectation => {

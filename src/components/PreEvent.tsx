@@ -24,7 +24,7 @@ export default function PreEvent(props: PreEventProps) {
     texts.push(expectation.text)
   })
 
-  texts.push(`Do you choose to go to the ${hobby.toLowerCase()} event, or would you
+  texts.push(`Do you choose to go to the ${hobby} event, or would you
   rather stay home?`)
 
   const animationDuration = texts.length * DEFAULT_TEXT_ANIMATION_DELAY

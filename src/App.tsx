@@ -23,7 +23,7 @@ function App() {
   const [winLossCondition, setWinLossCondition] = useState<WinLossCondition | null>(null)
 
   const exitStart = (hobby: string) => {
-    setHobby(hobby);
+    setHobby(hobby.toLowerCase());
     setGameState(GameState.event);
   };
 

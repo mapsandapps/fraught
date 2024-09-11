@@ -1,14 +1,15 @@
 import { useState } from "react";
 import "./App.css";
-import { INIT_BELONGING, INIT_EXCLUSION, checkForWinOrLoss, getEvent, getFirstEvent } from "./helpers";
 import Event from "./components/Event";
 import Home from "./components/Home";
 import Interstitial from "./components/Interstitial";
 import PreEvent from "./components/PreEvent";
 import Start from "./components/Start";
-
-import { Choice, Event as EventType, EventHistory, EventHistoryLog, GameState, WinLossCondition } from "./types";
 import Win from "./components/Win";
+import { HOBBY_OPTIONS } from "./bank";
+import { INIT_BELONGING, INIT_EXCLUSION, checkForWinOrLoss, getEvent, getFirstEvent } from "./helpers";
+import { Choice, Event as EventType, EventHistory, EventHistoryLog, GameState, Hobby, WinLossCondition } from "./types";
+import { sample } from "lodash";
 
 function App() {
   const INIT_EVENT: EventHistory = {
@@ -17,14 +18,14 @@ function App() {
     finalExclusion: INIT_EXCLUSION
   }
 
-  const [hobby, setHobby] = useState<string>('');
-  const [gameState, setGameState] = useState<GameState>(GameState.start);
-  const [eventHistoryLog, setEventHistoryLog] = useState<EventHistoryLog>([INIT_EVENT]);
+  const [hobby, setHobby] = useState<Hobby>(sample(HOBBY_OPTIONS) as Hobby)
+  const [gameState, setGameState] = useState<GameState>(GameState.start)
+  const [eventHistoryLog, setEventHistoryLog] = useState<EventHistoryLog>([INIT_EVENT])
   const [nextEvent, setNextEvent] = useState<EventType>(getFirstEvent())
   const [winLossCondition, setWinLossCondition] = useState<WinLossCondition | null>(null)
 
-  const exitStart = (hobby: string) => {
-    setHobby(hobby.toLowerCase());
+  const exitStart = (hobby: Hobby) => {
+    setHobby({ ...hobby, name: hobby.name.toLowerCase() });
     setGameState(GameState.event);
   };
 
@@ -57,7 +58,7 @@ function App() {
 
   return (
     <>
-      {gameState === GameState.start && <Start onExit={exitStart} />}
+      {gameState === GameState.start && <Start defaultHobby={hobby} onExit={exitStart} />}
       {gameState === GameState.interstitial && <Interstitial eventHistoryLog={eventHistoryLog} onExit={exitInterstitial} />}
       {gameState === GameState.preEvent && <PreEvent hobby={hobby} nextEvent={nextEvent} eventHistoryLog={eventHistoryLog} onExit={exitPreEvent} />}
       {gameState === GameState.event && <Event hobby={hobby} nextEvent={nextEvent} eventHistoryLog={eventHistoryLog} onExit={exitEvent} />}

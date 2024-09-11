@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { DEFAULT_TEXT_ANIMATION_DELAY } from "../helpers";
-import { Choice, Event, EventHistoryLog, GameState } from "../types";
+import { DEFAULT_TEXT_ANIMATION_DELAY, getMonth } from "../helpers";
+import { Choice, Event, EventHistoryLog, GameState, Hobby } from "../types";
 import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
 import Meters from "./Meters";
 import Month from "./Month";
@@ -8,7 +8,7 @@ import ProsAndCons from "./ProsAndCons";
 
 interface PreEventProps {
   eventHistoryLog: EventHistoryLog;
-  hobby: string;
+  hobby: Hobby;
   nextEvent: Event;
   onExit: (choice: Choice) => void;
 }
@@ -19,7 +19,7 @@ export default function PreEvent(props: PreEventProps) {
 
   const texts: string[] = []
 
-  texts.push(`Do you choose to go to the ${hobby} event, or would you
+  texts.push(`Do you choose to go to the ${hobby.name} event, or would you
   rather stay home?`)
 
   const animationDuration = texts.length * DEFAULT_TEXT_ANIMATION_DELAY
@@ -31,6 +31,7 @@ export default function PreEvent(props: PreEventProps) {
   return (
     <div className="card">
       <Month gameState={GameState.preEvent} monthNumber={eventHistoryLog.length} />
+      <p>You take a moment and contemplate what you know about { getMonth(eventHistoryLog.length) }'s event.</p>
       <ProsAndCons nextEvent={nextEvent} />
       <AnimatedTextWithButtons
         texts={texts}

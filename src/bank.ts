@@ -1,15 +1,15 @@
 import { sample } from "lodash";
-import { Direction, Expectation, Occurrence, Stat } from "./types";
+import { Direction, Expectation, Hobby, Occurrence, Stat } from "./types";
 
-export const HOBBY_OPTIONS: string[] = [
-  'Rock climbing',
-  'Salsa dancing',
-  'Surfing',
-  'Origami',
-  'Foraging',
-  'Archery',
-  'Photography',
-  'Birding'
+export const HOBBY_OPTIONS: Hobby[] = [
+  { name: 'Rock climbing', emoji: '⛰️' },
+  { name: 'Salsa dancing', emoji: '💃' },
+  { name: 'Surfing', emoji: '🏄‍♀️' },
+  { name: 'Origami', emoji: '💠' },
+  { name: 'Foraging', emoji: '🍄' },
+  { name: 'Archery', emoji: '🏹' },
+  { name: 'Photography', emoji: '📷' },
+  { name: 'Birding', emoji: '🦉' },
 ]
 
 export const firstEventBank: Occurrence[] = [

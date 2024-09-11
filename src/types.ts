@@ -34,6 +34,11 @@ export enum Choice {
   home = 'home',
 }
 
+export type Hobby = {
+  name: string;
+  emoji: string;
+}
+
 export type Expectation = {
   text: string;
   direction: Direction;

@@ -1,15 +1,13 @@
 import { useState } from 'react';
-import { sample } from 'lodash';
-import { HOBBY_OPTIONS } from '../bank';
+import { Hobby } from '../types';
 
 interface StartProps {
-  onExit: (hobby: string) => void;
+  defaultHobby: Hobby;
+  onExit: (hobby: Hobby) => void;
 }
 
 export default function Start(props: StartProps) {
-  const { onExit } = props;
-
-  const defaultHobby = sample(HOBBY_OPTIONS) as string
+  const { defaultHobby, onExit } = props;
 
   const [hobby, setHobby] = useState(defaultHobby);
 
@@ -19,8 +17,14 @@ export default function Start(props: StartProps) {
       <p>You've made it a habit to try out a new hobby each new year.</p>
       <p>
         <label>
-          What hobby would you like to start?
-          <input placeholder={defaultHobby} type="text" onChange={(e) => setHobby(e.target.value || defaultHobby)} />
+          What hobby would you like to start?<br />
+          <input placeholder={defaultHobby.name} type="text" onChange={(e) => setHobby({ ...hobby, name: e.target.value || defaultHobby.name })} />
+        </label>
+      </p>
+      <p>
+        <label>
+          What emoji would you like to use to represent your hobby?<br />
+          <input placeholder={defaultHobby.emoji} type="text" maxLength={1} size={4} onChange={(e) => setHobby({ ...hobby, emoji: e.target.value || defaultHobby.emoji })} />
         </label>
       </p>
       <button onClick={() => onExit(hobby)}>Continue</button>

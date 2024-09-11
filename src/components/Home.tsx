@@ -1,4 +1,4 @@
-import { Choice, Direction, Event, EventHistory, EventHistoryLog, GameState, Stat } from "../types";
+import { Choice, Direction, Event, EventHistory, EventHistoryLog, GameState, Hobby, Stat } from "../types";
 import { DEFAULT_TEXT_ANIMATION_DELAY, HOME_BELONGING, HOME_EXCLUSION, getMonth } from "../helpers";
 import Meters from "./Meters";
 import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
@@ -6,7 +6,7 @@ import Month from "./Month";
 import { getHomeText } from "../bank";
 
 interface HomeProps {
-  hobby: string;
+  hobby: Hobby;
   eventHistoryLog: EventHistoryLog;
   onExit: (eventHistory: EventHistory) => void;
 }
@@ -33,7 +33,7 @@ export default function Home(props: HomeProps) {
     `You spent a cozy night at home, instead of attending the ${getMonth(eventHistoryLog.length)} event.`,
     `Your exclusion decreased by ${deltaExclusion},`,
     `but your belonging also decreased by ${deltaBelonging}.`,
-    getHomeText(hobby)
+    getHomeText(hobby.name)
   ]
 
   const event: Event = [

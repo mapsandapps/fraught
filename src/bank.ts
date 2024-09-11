@@ -39,6 +39,7 @@ export const firstEventBank: Occurrence[] = [
 export const expectations: Expectation[] = [
   {
     text: 'You think someone you have a strained relationship with might be there.',
+    direction: Direction.negative,
     occurrences: [
       {
         text: 'Someone who just posted some anti-trans meme on Facebook was there.',
@@ -52,6 +53,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'You know being there will help make the event better.',
+    direction: Direction.positive,
     occurrences: [
       {
         text: 'You were able to help the event organizers.',
@@ -73,6 +75,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'The event quality will be lacking.',
+    direction: Direction.negative,
     occurrences: [
       {
         text: 'The venue wasn\'t that good.',
@@ -94,6 +97,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'The event will be very high quality.',
+    direction: Direction.positive,
     occurrences: [
       {
         text: 'The venue was great!',
@@ -107,6 +111,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'You don\'t feel welcome because you were ousted as an organizer of this event.',
+    direction: Direction.negative,
     occurrences: [
       {
         text: 'Even though you felt uncomfortable given the history of the situation, you\'re proud of yourself for going to the event anyway.',
@@ -120,6 +125,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'Probably not very many people will be there.',
+    direction: Direction.negative,
     occurrences: [
       {
         text: 'Not many people were there. You had to step up and take on a lot of responsibility that you didn\'t really have the energy for.',
@@ -133,6 +139,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'Someone will be there who will likely be glad to see you.',
+    direction: Direction.positive,
     occurrences: [
       {
         text: 'You were glad you got to chat with an old friend.',
@@ -142,6 +149,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'You think someone you haven\'t seen in a while will be there, and you\'ve been missing them.',
+    direction: Direction.positive,
     occurrences: [
       {
         text: 'The person you haven\'t seen in a while didn\'t show up.',
@@ -155,6 +163,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'You don\'t expect that any of your allies will be there.',
+    direction: Direction.negative,
     occurrences: [
       {
         text: 'You got misgendered all night.',
@@ -168,6 +177,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'There are no health precautions.',
+    direction: Direction.negative,
     occurrences: [
       {
         text: 'Someone there seemed sick, and you\'re worried you might be next.',
@@ -181,6 +191,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'You expect that there will be newcomers there that you can help.',
+    direction: Direction.positive,
     occurrences: [
       {
         text: 'You were able to help several newcomers learn the ropes!',
@@ -194,6 +205,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'You\'re worried you\'ll have FOMO if you don\'t go.',
+    direction: Direction.positive,
     occurrences: [
       {
         text: 'You learned some interesting information that you might have missed out on if you\'d stayed home.',
@@ -207,6 +219,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'Your friends aren\'t going, and you\'re worried that you\'ll look unsupportive of them if you go.',
+    direction: Direction.negative,
     occurrences: [
       {
         text: 'You felt really grumpy all night because your friends weren\'t there.',
@@ -216,6 +229,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: 'People are complaining about how the community is fracturing.',
+    direction: Direction.neutral,
     occurrences: [
       {
         text: 'People have been complaining about how the community is fracturing, but you feel like you going at least means that you\'re not part of the problem.',
@@ -229,6 +243,7 @@ export const expectations: Expectation[] = [
     ]
   },{
     text: '"If I go, I\'ll get to participate in the hobby that I love!"',
+    direction: Direction.positive,
     occurrences: [
       {
         text: 'You went and overall had a great time!',

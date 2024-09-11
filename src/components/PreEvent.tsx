@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { DEFAULT_TEXT_ANIMATION_DELAY, getMonth } from "../helpers";
+import { DEFAULT_TEXT_ANIMATION_DELAY } from "../helpers";
 import { Choice, Event, EventHistoryLog, GameState } from "../types";
+import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
 import Meters from "./Meters";
 import Month from "./Month";
-import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
+import ProsAndCons from "./ProsAndCons";
 
 interface PreEventProps {
   eventHistoryLog: EventHistoryLog;
@@ -17,12 +18,7 @@ export default function PreEvent(props: PreEventProps) {
   const [buttonsShown, setButtonsShown] = useState(false)
 
   const texts = [
-    nextEvent.length > 1 ? `A number of thoughts go through your head about the upcoming event in ${getMonth(eventHistoryLog.length)}:` : `You contemplate the upcoming event in ${getMonth(eventHistoryLog.length)}:`
   ]
-
-  nextEvent.map((expectation) => {
-    texts.push(expectation.text)
-  })
 
   texts.push(`Do you choose to go to the ${hobby} event, or would you
   rather stay home?`)
@@ -36,10 +32,11 @@ export default function PreEvent(props: PreEventProps) {
   return (
     <div className="card">
       <Month gameState={GameState.preEvent} monthNumber={eventHistoryLog.length} />
+      <ProsAndCons nextEvent={nextEvent} />
       <AnimatedTextWithButtons
         texts={texts}
         hasInnerList
-        extraDelay={1}
+        extraDelay={nextEvent.length + 1}
       />
       {buttonsShown && (
         <>

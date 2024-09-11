@@ -37,8 +37,8 @@ function App() {
     if (winLoss) {
       setGameState(GameState.win)
     } else {
-      setGameState(GameState.preEvent)
       setNextEvent(getEvent())
+      setGameState(GameState.preEvent)
     }
   };
 

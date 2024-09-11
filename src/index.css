@@ -1,9 +1,3 @@
-@font-face {
-  font-family: Inter;
-  /* in public dir here, but on build gets put in ./assets (and this path gets converted automatically) */
-  src: url('Inter-VariableFont_opsz\,wght.ttf');
-}
-
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

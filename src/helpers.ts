@@ -58,6 +58,7 @@ export const getFirstEvent = (): Event => {
 
   return [{
     text: '',
+    direction: Direction.neutral,
     occurrences
   }]
 }
@@ -72,8 +73,7 @@ export const getEvent = (): Event => {
 
     giveOccurrencesValues(occurrences)
 
-    event.push({
-      text: expectation.text,
+    event.push({ ...expectation, 
       occurrences: occurrences
     })
   })

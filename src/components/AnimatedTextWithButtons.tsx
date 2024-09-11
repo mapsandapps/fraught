@@ -21,8 +21,7 @@ export default function AnimatedTextWithButtons(props: AnimatedTextWithButtonsPr
   return (
     <>
       {texts.map((text, i) => {
-        const animationDelay = `${i * DEFAULT_TEXT_ANIMATION_DELAY}ms`
-
+        const animationDelay = `${(i + (extraDelay || 0)) * DEFAULT_TEXT_ANIMATION_DELAY}ms`
 
         if (hasInnerList && (i > 0 && i < texts.length - 1)) {
           return (

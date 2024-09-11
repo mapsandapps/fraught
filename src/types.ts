@@ -35,7 +35,9 @@ export enum Choice {
 
 export type Expectation = {
   text: string;
+  direction: Direction;
   occurrences: Occurrence[];
+  timing?: number; // ms
 };
 
 export type Event = Expectation[]

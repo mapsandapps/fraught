@@ -2,7 +2,8 @@ import { expectations, firstEventBank } from "./bank";
 import { Choice, Direction, Event, EventHistoryLog, Occurrence, Stat, WinLossCondition } from "./types";
 import { filter, flatten, inRange, last, random, sample, sampleSize, sum } from 'lodash';
 
-export const DEFAULT_TEXT_ANIMATION_DELAY = 2000; // ms
+export const DEFAULT_TEXT_ANIMATION_DELAY = 500;
+// export const DEFAULT_TEXT_ANIMATION_DELAY = 2000; // ms
 export const INIT_BELONGING = 30;
 export const MAX_BELONGING = 100;
 export const INIT_EXCLUSION = 30;
@@ -15,7 +16,8 @@ export const MAX_EXCLUSION_DELTA = 10;
 export const POSITIVE_MULTIPLIER = 2;
 
 // pull a random one of these to find out how many expectations you have about an event
-const SAMPLE_OF_EXPECTATIONS = [1, 1, 2, 2, 2, 2, 2, 2, 3, 3]
+// const SAMPLE_OF_EXPECTATIONS = [1, 1, 2, 2, 2, 2, 2, 2, 3, 3]
+const SAMPLE_OF_EXPECTATIONS = [1, 2, 5, 6, 8]
 const SAMPLE_OF_OCCURRENCES = [1, 1, 1, 1, 2]
 const SAMPLE_OF_OCCURRENCES_FIRST_EVENT = [1, 2, 2, 3, 3]
 

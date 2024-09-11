@@ -13,7 +13,7 @@ export default function Month(props: MonthProps) {
   const currentMonthName = getMonth(monthNumber)
   const prevMonthName = getMonth(monthNumber - 1)
 
-  if (gameState !== GameState.preEvent) {
+  if (gameState !== GameState.interstitial) {
     return (
       <h1>{getMonth(monthNumber)}</h1>
     )
@@ -22,7 +22,7 @@ export default function Month(props: MonthProps) {
   return (
     <div className="month">
       {/* modified from https://www.reddit.com/r/svg/comments/1e3qehg/svg_animation_calendar_like/ */}
-      <svg className="month-svg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 96' width='128' height='96'>
+      <svg className="month-svg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 96' width='384' height='288'>
         <line className="calendar-bar" x1='0' x2='128' y1='0' y2='0' />
         
         <g className='pages'>

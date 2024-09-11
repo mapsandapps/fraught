@@ -4,6 +4,7 @@ export enum GameState {
   home = 'home',
   win = 'win',
   preEvent = 'pre-event',
+  interstitial = 'interstitial',
 }
 
 export enum WinLossCondition {

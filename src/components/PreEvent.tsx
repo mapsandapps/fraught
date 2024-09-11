@@ -17,8 +17,7 @@ export default function PreEvent(props: PreEventProps) {
   const { eventHistoryLog, hobby, nextEvent, onExit } = props;
   const [buttonsShown, setButtonsShown] = useState(false)
 
-  const texts = [
-  ]
+  const texts: string[] = []
 
   texts.push(`Do you choose to go to the ${hobby} event, or would you
   rather stay home?`)

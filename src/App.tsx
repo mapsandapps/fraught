@@ -3,6 +3,7 @@ import "./App.css";
 import { INIT_BELONGING, INIT_EXCLUSION, checkForWinOrLoss, getEvent, getFirstEvent } from "./helpers";
 import Event from "./components/Event";
 import Home from "./components/Home";
+import Interstitial from "./components/Interstitial";
 import PreEvent from "./components/PreEvent";
 import Start from "./components/Start";
 
@@ -38,9 +39,13 @@ function App() {
       setGameState(GameState.win)
     } else {
       setNextEvent(getEvent())
-      setGameState(GameState.preEvent)
+      setGameState(GameState.interstitial)
     }
   };
+
+  const exitInterstitial = ()  => {
+    setGameState(GameState.preEvent)
+  }
 
   const exitPreEvent = (choice: Choice) => {
     if (choice === Choice.init) {
@@ -53,6 +58,7 @@ function App() {
   return (
     <>
       {gameState === GameState.start && <Start onExit={exitStart} />}
+      {gameState === GameState.interstitial && <Interstitial eventHistoryLog={eventHistoryLog} onExit={exitInterstitial} />}
       {gameState === GameState.preEvent && <PreEvent hobby={hobby} nextEvent={nextEvent} eventHistoryLog={eventHistoryLog} onExit={exitPreEvent} />}
       {gameState === GameState.event && <Event hobby={hobby} nextEvent={nextEvent} eventHistoryLog={eventHistoryLog} onExit={exitEvent} />}
       {gameState === GameState.home && <Home hobby={hobby} eventHistoryLog={eventHistoryLog} onExit={exitEvent} />}

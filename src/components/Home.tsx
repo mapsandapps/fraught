@@ -39,6 +39,7 @@ export default function Home(props: HomeProps) {
   const event: Event = [
     {
       text: '',
+      direction: Direction.negative,
       occurrences: [
         {
           text: '',

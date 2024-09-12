@@ -64,3 +64,8 @@ export type EventHistory = {
 };
 
 export type EventHistoryLog = EventHistory[];
+
+export type AnimatedText = {
+  text: string;
+  class?: string;
+}

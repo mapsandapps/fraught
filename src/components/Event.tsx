@@ -41,7 +41,7 @@ export default function Event(props: EventProps) {
   const numberOfEventsAttended = countEventsAttended(eventHistoryLog) + 1
 
   const texts = [
-    `You attended your ${numberOfEventsAttended}${suffixes.get(pluralRule.select(numberOfEventsAttended))} ${hobby.name} event.`
+    { text: `You attended your ${numberOfEventsAttended}${suffixes.get(pluralRule.select(numberOfEventsAttended))} ${hobby.name} event.` }
   ]
 
   nextEvent.map(expectation => {
@@ -51,8 +51,8 @@ export default function Event(props: EventProps) {
     expectation.occurrences.map(occurrence => {
       timing += DEFAULT_TEXT_ANIMATION_DELAY
       occurrence.timing = timing
-      texts.push(occurrence.text)
-      texts.push(getStatChangeText(occurrence))
+      texts.push({ text: occurrence.text })
+      texts.push({ text: getStatChangeText(occurrence) })
       timing += DEFAULT_TEXT_ANIMATION_DELAY
     })
   })

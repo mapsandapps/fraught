@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DEFAULT_TEXT_ANIMATION_DELAY, getMonth } from "../helpers";
-import { Choice, Event, EventHistoryLog, GameState, Hobby } from "../types";
+import { AnimatedText, Choice, Event, EventHistoryLog, GameState, Hobby } from "../types";
 import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
 import Meters from "./Meters";
 import Month from "./Month";
@@ -17,10 +17,10 @@ export default function PreEvent(props: PreEventProps) {
   const { eventHistoryLog, hobby, nextEvent, onExit } = props;
   const [buttonsShown, setButtonsShown] = useState(false)
 
-  const texts: string[] = []
+  const texts: AnimatedText[] = []
 
-  texts.push(`Do you choose to go to the ${hobby.name} event, or would you
-  rather stay home?`)
+  texts.push({ text: `Do you choose to go to the ${hobby.name} event, or would you
+  rather stay home?` })
 
   const extraDelay = nextEvent.length + 1
 

@@ -30,10 +30,10 @@ export default function Home(props: HomeProps) {
   };
 
   const texts = [
-    `You spent a cozy night at home, instead of attending the ${getMonth(eventHistoryLog.length)} event.`,
-    `Your exclusion decreased by ${deltaExclusion},`,
-    `but your belonging also decreased by ${deltaBelonging}.`,
-    getHomeText(hobby.name)
+    { text: `You spent a cozy night at home, instead of attending the ${getMonth(eventHistoryLog.length)} event.` },
+    { text: `Your exclusion decreased by ${deltaExclusion},` },
+    { text: `but your belonging also decreased by ${deltaBelonging}.` },
+    { text: getHomeText(hobby.name) }
   ]
 
   const event: Event = [

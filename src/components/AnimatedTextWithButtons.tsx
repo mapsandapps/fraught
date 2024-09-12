@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { DEFAULT_TEXT_ANIMATION_DELAY } from "../helpers";
+import { AnimatedText } from "../types";
 
 interface AnimatedTextWithButtonsProps {
   children?: React.ReactNode
-  texts: string[]
+  texts: AnimatedText[]
   extraDelay?: number // number of extra delay periods — NOTE: if meters also animate, they will also need to be adjusted
   hasInnerList?: boolean
 }
@@ -30,7 +31,7 @@ export default function AnimatedTextWithButtons(props: AnimatedTextWithButtonsPr
               className="fade-in-text" 
               style={{ animationDelay }}
             >
-              { text }
+              { text.text }
             </li>
           )
         }
@@ -41,7 +42,7 @@ export default function AnimatedTextWithButtons(props: AnimatedTextWithButtonsPr
             className="fade-in-text" 
             style={{ animationDelay }}
           >
-            { text }
+            { text.text }
           </p>
         )
       })}

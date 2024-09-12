@@ -35,6 +35,7 @@ export enum Choice {
 }
 
 export enum AnimatedTextClass {
+  bullet = 'bullet',
   statText = 'stat-text',
 }
 

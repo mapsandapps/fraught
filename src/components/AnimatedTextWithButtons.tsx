@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import clsx from 'clsx';
 import { DEFAULT_TEXT_ANIMATION_DELAY } from "../helpers";
-import { AnimatedText } from "../types";
+import { AnimatedText, AnimatedTextClass } from "../types";
+import "./AnimatedTextWithButtons.css";
 
 interface AnimatedTextWithButtonsProps {
   children?: React.ReactNode
@@ -23,10 +25,22 @@ export default function AnimatedTextWithButtons(props: AnimatedTextWithButtonsPr
       {texts.map((text, i) => {
         const animationDelay = `${(i + (extraDelay || 0)) * DEFAULT_TEXT_ANIMATION_DELAY}ms`
 
+        if (text.class === AnimatedTextClass.bullet) {
+          return (
+            <li 
+              key={`text-${i}`} 
+              className="fade-in-text" 
+              style={{ animationDelay }}
+            >
+              { text.text }
+            </li>
+          )
+        }
+
         return (
           <p 
             key={`text-${i}`} 
-            className="fade-in-text" 
+            className={clsx({ 'fade-in-text': true, 'stat-text': text.class === AnimatedTextClass.statText })}
             style={{ animationDelay }}
           >
             { text.text }

@@ -51,8 +51,8 @@ export default function Event(props: EventProps) {
     expectation.occurrences.map(occurrence => {
       timing += DEFAULT_TEXT_ANIMATION_DELAY
       occurrence.timing = timing
-      texts.push({ text: occurrence.text })
-      texts.push({ text: getStatChangeText(occurrence) })
+      texts.push({ text: occurrence.text, class: AnimatedTextClass.bullet })
+      texts.push({ text: getStatChangeText(occurrence), class: AnimatedTextClass.statText })
       timing += DEFAULT_TEXT_ANIMATION_DELAY
     })
   })

@@ -22,7 +22,9 @@ export default function PreEvent(props: PreEventProps) {
   texts.push(`Do you choose to go to the ${hobby.name} event, or would you
   rather stay home?`)
 
-  const animationDuration = texts.length * DEFAULT_TEXT_ANIMATION_DELAY
+  const extraDelay = nextEvent.length + 1
+
+  const animationDuration = (texts.length + extraDelay) * DEFAULT_TEXT_ANIMATION_DELAY
 
   setTimeout(() => {
     setButtonsShown(true)
@@ -36,7 +38,7 @@ export default function PreEvent(props: PreEventProps) {
       <AnimatedTextWithButtons
         texts={texts}
         hasInnerList
-        extraDelay={nextEvent.length + 1}
+        extraDelay={extraDelay}
       />
       {buttonsShown && (
         <>

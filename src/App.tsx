@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Event from "./components/Event";
 import Home from "./components/Home";
@@ -23,6 +23,11 @@ function App() {
   const [eventHistoryLog, setEventHistoryLog] = useState<EventHistoryLog>([INIT_EVENT])
   const [nextEvent, setNextEvent] = useState<EventType>(getFirstEvent())
   const [winLossCondition, setWinLossCondition] = useState<WinLossCondition | null>(null)
+
+  useEffect(() => {
+    // when the page transitions, scroll to the top
+    window.scrollTo(0, 0)
+  }, [gameState])
 
   const exitStart = (hobby: Hobby) => {
     setHobby({ ...hobby, name: hobby.name.toLowerCase() });

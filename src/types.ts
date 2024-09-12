@@ -34,6 +34,10 @@ export enum Choice {
   home = 'home',
 }
 
+export enum AnimatedTextClass {
+  statText = 'stat-text',
+}
+
 export type Hobby = {
   name: string;
   emoji: string;
@@ -67,5 +71,5 @@ export type EventHistoryLog = EventHistory[];
 
 export type AnimatedText = {
   text: string;
-  class?: string;
+  class?: AnimatedTextClass;
 }

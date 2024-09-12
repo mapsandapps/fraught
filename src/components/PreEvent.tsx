@@ -37,7 +37,6 @@ export default function PreEvent(props: PreEventProps) {
       <ProsAndCons nextEvent={nextEvent} />
       <AnimatedTextWithButtons
         texts={texts}
-        hasInnerList
         extraDelay={extraDelay}
       />
       {buttonsShown && (

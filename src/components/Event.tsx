@@ -1,5 +1,5 @@
 import { DEFAULT_TEXT_ANIMATION_DELAY, INIT_BELONGING, INIT_EXCLUSION, countEventsAttended, getDeltaStat, getStatChangeText } from "../helpers";
-import { Choice, Event as EventType, EventHistory, EventHistoryLog, Stat, GameState, Hobby } from "../types";
+import { Choice, Event as EventType, EventHistory, EventHistoryLog, Stat, GameState, Hobby, AnimatedText, AnimatedTextClass } from "../types";
 import Meters from "./Meters";
 import AnimatedTextWithButtons from "./AnimatedTextWithButtons";
 import Month from "./Month";
@@ -40,7 +40,7 @@ export default function Event(props: EventProps) {
 
   const numberOfEventsAttended = countEventsAttended(eventHistoryLog) + 1
 
-  const texts = [
+  const texts: AnimatedText[] = [
     { text: `You attended your ${numberOfEventsAttended}${suffixes.get(pluralRule.select(numberOfEventsAttended))} ${hobby.name} event.` }
   ]
 

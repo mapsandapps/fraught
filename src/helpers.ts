@@ -86,7 +86,20 @@ export const getEvent = (): Event => {
 export const getStatChangeText = (occurrence: Occurrence): string => {
   if (occurrence.direction === Direction.neutral) return ''
 
-  return `Your ${occurrence.stat} ${occurrence.direction === Direction.positive ? 'increased' : 'decreased'} by ${occurrence.value}.`
+  let text = ''
+
+  if (occurrence.stat === Stat.belonging) {
+    text += `You feel a bit ${Direction.positive ? 'more' : 'less'} integrated into the hobby.`
+  } else if (occurrence.direction === Direction.positive) {
+    text += `You don't feel as welcome in the hobby.`
+  } else {
+    text += `Your sense of exclusion wore off a bit.`
+  }
+
+  text += ' '
+  text += `[${occurrence.stat === Stat.belonging ? 'Belonging' : 'Exclusion'} ${occurrence.direction === Direction.positive ? '+' : '-'}${occurrence.value}]`
+
+  return text
 }
 
 export const getOccurrencesForEvent = (event: Event): Occurrence[] => {

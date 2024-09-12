@@ -1,4 +1,3 @@
-import { sample } from "lodash";
 import { Direction, Expectation, Hobby, Occurrence, Stat } from "./types";
 
 export const HOBBY_OPTIONS: Hobby[] = [
@@ -31,6 +30,10 @@ export const firstEventBank: Occurrence[] = [
     direction: Direction.positive
   },{
     text: 'You learned a lot about the hobby.',
+    stat: Stat.belonging,
+    direction: Direction.positive
+  },{
+    text: 'You unexpectedly ran into an old friend.',
     stat: Stat.belonging,
     direction: Direction.positive
   }
@@ -251,15 +254,29 @@ export const expectations: Expectation[] = [
         direction: Direction.neutral
       }
     ]
+  },{
+    text: 'You have an uneasy feeling about the event',
+    direction: Direction.negative,
+    occurrences: [
+      {
+        text: 'The event was fine, despite your concerns.',
+        stat: Stat.exclusion,
+        direction: Direction.neutral
+      },{
+        text: 'You felt really on edge all night.',
+        stat: Stat.exclusion,
+        direction: Direction.positive
+      }
+    ]
   }
 ]
 
-export const getHomeText = (hobby: string): string => {
-  const homeTextBank = [
-    `You miss your ${hobby} friends.`,
-    `You wonder how your ${hobby} friends are doing.`,
-    `You miss your ${hobby} friends, but you aren't sure if they're missing you or not. You haven't heard anything from them.`
-  ]
-
-  return sample(homeTextBank)!
+export const getHomeText = (hobby: string, belonging: number): string => {
+  if (belonging > 67) {
+    return `You miss your ${hobby} friends.`
+  }
+  if (belonging > 33) {
+    return `You wonder how your ${hobby} friends are doing.`
+  }
+  return `You miss your ${hobby} friends, but you aren't sure if they're missing you or not. You haven't heard anything from them.`
 }

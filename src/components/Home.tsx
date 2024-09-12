@@ -33,7 +33,7 @@ export default function Home(props: HomeProps) {
     { text: `You spent a cozy night at home, instead of attending the ${getMonth(eventHistoryLog.length)} event.` },
     { text: `Your exclusion decreased by ${deltaExclusion},` },
     { text: `but your belonging also decreased by ${deltaBelonging}.` },
-    { text: getHomeText(hobby.name) }
+    { text: getHomeText(hobby.name, finalBelonging) }
   ]
 
   const event: Event = [

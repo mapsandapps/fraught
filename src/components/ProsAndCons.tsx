@@ -15,6 +15,9 @@ export default function ProsAndCons(props: ProsAndConsProps) {
 
   nextEvent.map((expectation, i) => {
     const timing = DEFAULT_TEXT_ANIMATION_DELAY * (i + 1)
+
+    if (expectation.text === '') return
+
     switch (expectation.direction) {
       case Direction.positive:
         pros.push({ ...expectation, timing })

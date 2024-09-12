@@ -20,6 +20,7 @@ export const POSITIVE_MULTIPLIER = 2;
 const SAMPLE_OF_EXPECTATIONS = [1, 2, 5, 6, 8]
 const SAMPLE_OF_OCCURRENCES = [1, 1, 1, 1, 2]
 const SAMPLE_OF_OCCURRENCES_FIRST_EVENT = [1, 2, 2, 3, 3]
+const LIKELIHOOD_OF_EXTRA_OCCURRENCE = 0.3
 
 const getNumberOfExpectations = () => SAMPLE_OF_EXPECTATIONS[random(0, SAMPLE_OF_EXPECTATIONS.length - 1)]
 const getNumberOfOccurrences = (isFirstEvent?: boolean) => {
@@ -65,9 +66,20 @@ export const getFirstEvent = (): Event => {
   }]
 }
 
+export const getRandomExtraOccurrence = (): Occurrence => {
+  const expectation = sample(expectations)
+
+  const occurrence = sample(expectation?.occurrences)!
+
+  giveOccurrencesValues([occurrence])
+
+  return occurrence
+}
+
 export const getEvent = (): Event => {
   const event: Event = []
   const sampledExpectations = sampleSize(expectations, getNumberOfExpectations())
+  const allOccurrences: Occurrence[] = []
 
   sampledExpectations.map((expectation) => {
     const numberOfOccurrences = getNumberOfOccurrences()
@@ -75,10 +87,32 @@ export const getEvent = (): Event => {
 
     giveOccurrencesValues(occurrences)
 
+    allOccurrences.push(...occurrences)
+
     event.push({ ...expectation, 
       occurrences: occurrences
     })
   })
+
+  // sometimes add an occurrence with no expectation
+  if (Math.random() < LIKELIHOOD_OF_EXTRA_OCCURRENCE) {
+    const randomExtraOccurrence = getRandomExtraOccurrence();
+
+    // if the new occurence isn't already in the list of occurrences, add it
+    // NOTE: this means the likelihood will actually be a bit below the constant value
+    // i could redraw, but i don't really see a point, haha
+    const isRandomOccurrenceNew = !allOccurrences.find(occurrence => {
+      return occurrence.text === randomExtraOccurrence.text
+    })
+  
+    if (isRandomOccurrenceNew) {
+      event.push({
+        text: '',
+        direction: Direction.neutral,
+        occurrences: [randomExtraOccurrence]
+      })
+    }
+  }
 
   return event;
 }

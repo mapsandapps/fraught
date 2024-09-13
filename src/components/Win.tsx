@@ -20,7 +20,7 @@ export default function Win(props: WinProps) {
   switch (winLossCondition) {
     case WinLossCondition.belongingMax: 
       texts.push({ text: `You've become very comfortable in your new ${hobby.name} hobby. You've really found a home here with these folks. ❤️` })
-      texts.push({ text: 'You continue to attend events for the rest of the year.' })
+      // texts.push({ text: 'You continue to attend events for the rest of the year.' })
       break
     case WinLossCondition.belongingMin:
     case WinLossCondition.bothMin:
@@ -33,17 +33,15 @@ export default function Win(props: WinProps) {
       break
     case WinLossCondition.exclusionMin:
       texts.push({ text: `You aren't always sure if you belong in the ${hobby.name} hobby, but at least you don't feel pushed away from it.` })
-      texts.push({ text: 'You decide to continue attending events regularly for the foreseeable future.' })
+      // texts.push({ text: 'You decide to continue attending events regularly for the foreseeable future.' })
       break
     case WinLossCondition.yearEnd:
       texts.push({ text: `You've made it through a full year of ${hobby.name} events! You're not always sure if you belong there or not, but you're looking forward to see what next year has to offer.` })
       break
     case WinLossCondition.bothMax:
       texts.push({ text: `What a weird experience. You really feel like you've found a home in the ${hobby.name} community. But on the other hand, you often feel excluded from various events.` })
-      texts.push({ text: `You feel some kind of way about this, and you decide to pause on attending ${hobby.name} events for now.` })
+      // texts.push({ text: `You feel some kind of way about this, and you decide to pause on attending ${hobby.name} events for now.` })
       break
-    default:
-      console.warn('Unexpected condition')
   }
 
   const meterFullWidth = MAX_BELONGING

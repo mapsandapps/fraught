@@ -12,6 +12,13 @@
   min-height: 500px;
 }
 
+
+@media (prefers-color-scheme: dark) {
+  .paper {
+    color: #213547;
+  }
+}
+
 .header {
   position: absolute;
   width: 100%;

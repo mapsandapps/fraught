@@ -39,6 +39,27 @@ export const firstEventBank: Occurrence[] = [
   }
 ]
 
+// NOTE: the occurrences with expectations can also happen without their expectation
+export const occurrencesWithoutExpectations: Occurrence[] = [
+  {
+    text: 'Someone walked up to the group and said, "Looks like it\'s just me and the lesbians!" You\'re unsure of why he thinks you\'re a lesbian.',
+    stat: Stat.exclusion,
+    direction: Direction.positive
+  },{
+    text: 'Folks know you need a ride to an upcoming event, but nobody offered you one. You aren\'t sure if you\'ll be able to get there.',
+    stat: Stat.belonging,
+    direction: Direction.negative
+  },{
+    text: 'People wanted to go out to eat afterwards, but you can\'t afford to eat at that restaurant, and you don\'t want to sit around awkwardly sipping water.',
+    stat: Stat.exclusion,
+    direction: Direction.positive
+  },{
+    text: 'People are talking about traveling to an upcoming event, but you won\'t be able to afford to go.',
+    stat: Stat.exclusion,
+    direction: Direction.positive
+  }
+]
+
 export const expectations: Expectation[] = [
   {
     text: 'You think someone you have a strained relationship with might be there.',
@@ -138,6 +159,10 @@ export const expectations: Expectation[] = [
         text: 'Not many people were there. You were able to step up and take a lot of responsibility, and it made you feel good.',
         stat: Stat.belonging,
         direction: Direction.positive
+      },{
+        text: 'Nobody greeted you when you walked into the space, and nobody you\'d previously met had arrived yet.',
+        stat: Stat.belonging,
+        direction: Direction.negative
       }
     ]
   },{
@@ -264,6 +289,32 @@ export const expectations: Expectation[] = [
         direction: Direction.neutral
       },{
         text: 'You felt really on edge all night.',
+        stat: Stat.exclusion,
+        direction: Direction.positive
+      }
+    ]
+  },{
+    text: 'You haven\'t been to this venue before, and you\'re nervous about the new experience.',
+    direction: Direction.negative,
+    occurrences: [
+      {
+        text: 'The venue was great!',
+        stat: Stat.belonging,
+        direction: Direction.neutral
+      },{
+        text: 'You arrived at the venue with plenty of time to check everything out and get your bearings. You didn\'t feel anxious at all!',
+        stat: Stat.belonging,
+        direction: Direction.neutral
+      },{
+        text: 'When you made it to the venue, you felt rushed. You barely had time to find the bathroom and use it before the event started.',
+        stat: Stat.belonging,
+        direction: Direction.neutral
+      },{
+        text: 'You had to look around quite a while to find the meeting point. You were anxious that you weren\'t going to be able to find it and would have to head home.',
+        stat: Stat.exclusion,
+        direction: Direction.positive
+      },{
+        text: 'You looked around a while and couldn\'t figure out where the event was being held. You were about to give up and leave when you finally saw someone you recognized and were able to follow them.',
         stat: Stat.exclusion,
         direction: Direction.positive
       }

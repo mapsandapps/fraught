@@ -75,7 +75,7 @@ export default function Win(props: WinProps) {
           {eventHistoryLog.map((logItem, i) => {
             const y = (i + 1) * 10
             return (
-              <g>
+              <g key={`log-item-${i}`}>
                 <rect 
                   className="filled exclusion" 
                   x={meterFullWidth - logItem.finalExclusion}

@@ -1,8 +1,8 @@
-import { expectations, firstEventBank } from "./bank";
+import { expectations, firstEventBank, occurrencesWithoutExpectations } from "./bank";
 import { Choice, Direction, Event, EventHistoryLog, Occurrence, Stat, WinLossCondition } from "./types";
 import { filter, flatten, inRange, last, random, sample, sampleSize, sum } from 'lodash';
 
-const IS_DEBUG_MODE = true
+const IS_DEBUG_MODE = false
 
 export const DEFAULT_TEXT_ANIMATION_DELAY = IS_DEBUG_MODE ? 500 : 2000; // ms
 export const INIT_BELONGING = 30;
@@ -17,10 +17,11 @@ export const MAX_EXCLUSION_DELTA = 10;
 export const POSITIVE_MULTIPLIER = 2;
 
 // pull a random one of these to find out how many expectations you have about an event
-const SAMPLE_OF_EXPECTATIONS = IS_DEBUG_MODE ? [1, 2, 5, 6, 8] : [1, 1, 2, 2, 2, 2, 2, 2, 3, 3]
+// const SAMPLE_OF_EXPECTATIONS = IS_DEBUG_MODE ? [1, 2, 5, 6, 8] : [1, 1, 2, 2, 2, 2, 2, 2, 3, 3]
+const SAMPLE_OF_EXPECTATIONS = [1, 1, 2, 2, 2, 2, 2, 2, 3, 3]
 const SAMPLE_OF_OCCURRENCES = [1, 1, 1, 1, 2]
 const SAMPLE_OF_OCCURRENCES_FIRST_EVENT = [1, 2, 2, 3, 3]
-const LIKELIHOOD_OF_EXTRA_OCCURRENCE = 0.3
+const LIKELIHOOD_OF_EXTRA_OCCURRENCE = IS_DEBUG_MODE ? 1 : 0.4
 
 const getNumberOfExpectations = () => SAMPLE_OF_EXPECTATIONS[random(0, SAMPLE_OF_EXPECTATIONS.length - 1)]
 const getNumberOfOccurrences = (isFirstEvent?: boolean) => {
@@ -67,10 +68,19 @@ export const getFirstEvent = (): Event => {
 }
 
 export const getRandomExtraOccurrence = (): Occurrence => {
-  const expectation = sample(expectations)
+  let occurrence
 
-  const occurrence = sample(expectation?.occurrences)!
-
+  // roll the dice about whether to get an occurrence that's attached to an expectation or one with no expectation
+  if (Math.random() < 0.5) {
+    // pick an occurrence from the expectations list
+    const expectation = sample(expectations)
+  
+    occurrence = sample(expectation?.occurrences)!
+  } else {
+    // pick an occurrance that has no expectation
+    occurrence = sample(occurrencesWithoutExpectations)!
+  }
+  
   giveOccurrencesValues([occurrence])
 
   return occurrence
@@ -123,9 +133,9 @@ export const getStatChangeText = (occurrence: Occurrence): string => {
   let text = ''
 
   if (occurrence.stat === Stat.belonging) {
-    text += `You feel a bit ${Direction.positive ? 'more' : 'less'} integrated into the hobby.`
+    text += `You feel a bit ${occurrence.direction === Direction.positive ? 'more' : 'less'} integrated into the hobby.`
   } else if (occurrence.direction === Direction.positive) {
-    text += `You don't feel as welcome in the hobby.`
+    text += `You feel less welcome in the hobby.`
   } else {
     text += `Your sense of exclusion wore off a bit.`
   }

@@ -1,7 +1,8 @@
 # Fraught
 
 Project links: 
-* [Itch (play the game here!)](https://mapsandapps.itch.io/fraught-eggjam)
+* [Itch (play the latest game here!)](https://mapsandapps.itch.io/fraught)
+* [Itch (play the jam version here!)](https://mapsandapps.itch.io/fraught-eggjam)
 * [Vercel deploy (generally not needed)](https://fraught-git-main-mapsandapps-projects.vercel.app/)
 * [Vercel admin](https://vercel.com/mapsandapps-projects/fraught)
 * [Stackblitz](https://stackblitz.com/~/github.com/mapsandapps/fraught)

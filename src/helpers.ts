@@ -2,7 +2,7 @@ import { expectations, firstEventBank } from "./bank";
 import { Choice, Direction, Event, EventHistoryLog, Occurrence, Stat, WinLossCondition } from "./types";
 import { filter, flatten, inRange, last, random, sample, sampleSize, sum } from 'lodash';
 
-const IS_DEBUG_MODE = true
+const IS_DEBUG_MODE = false
 
 export const DEFAULT_TEXT_ANIMATION_DELAY = IS_DEBUG_MODE ? 500 : 2000; // ms
 export const INIT_BELONGING = 30;
@@ -123,7 +123,7 @@ export const getStatChangeText = (occurrence: Occurrence): string => {
   let text = ''
 
   if (occurrence.stat === Stat.belonging) {
-    text += `You feel a bit ${Direction.positive ? 'more' : 'less'} integrated into the hobby.`
+    text += `You feel a bit ${occurrence.direction === Direction.positive ? 'more' : 'less'} integrated into the hobby.`
   } else if (occurrence.direction === Direction.positive) {
     text += `You don't feel as welcome in the hobby.`
   } else {
